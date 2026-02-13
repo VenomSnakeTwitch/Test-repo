@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MGS Master Collection Vol.2 Countdown</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #00ff99;
+    text-align: center;
+}
+
+#overlay {
+    background: rgba(0,0,0,0.85);
+    min-height: 100vh;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 42px;
+    text-shadow: 0 0 20px #00ff99;
+}
+
+#countdown {
+    font-size: 48px;
+    margin: 20px 0;
+    text-shadow: 0 0 20px #00ff99;
+}
+
+button {
+    background: black;
+    border: 2px solid #00ff99;
+    color: #00ff99;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #00ff99;
+    color: black;
+}
+
+input[type=range] {
+    width: 200px;
+}
+
+video {
+    margin-top: 30px;
+    width: 80%;
+    border: 2px solid #00ff99;
+}
+</style>
+</head>
+
+<body>
+
+<div id="overlay">
+
+<h1>METAL GEAR SOLID: Master Collection Vol.2</h1>
+<div id="countdown"></div>
+
+<div>
+<button onclick="playAudio()">▶ Play Music</button>
+<button onclick="pauseAudio()">⏸ Pause Music</button>
+<button onclick="toggleFullscreen()">⛶ Fullscreen</button>
+
+<br><br>
+
+Lautstärke:
+<input type="range" min="0" max="1" step="0.01" value="0.5"
+       oninput="setVolume(this.value)">
+</div>
+
+<!-- 🎵 Hintergrundmusik -->
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🎬 Lokaler Trailer -->
+<video id="trailer" controls>
+    <source src="trailer.mp4" type="video/mp4">
+    Dein Browser unterstützt kein HTML5 Video.
+</video>
+
+</div>
+
+<script>
+
+// 🎯 Release Datum anpassen falls nötig
+const targetDate = new Date("2026-09-30T00:00:00").getTime();
+
+setInterval(function() {
+
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("countdown").innerHTML =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+
+}, 1000);
+
+
+// 🎵 Audio Steuerung
+const audio = document.getElementById("bgMusic");
+const trailer = document.getElementById("trailer");
+
+// Musik starten nach erstem Klick (Browser Autoplay Schutz)
+document.addEventListener("click", function() {
+    audio.play().catch(()=>{});
+}, { once: true });
+
+function playAudio() {
+    audio.play();
+}
+
+function pauseAudio() {
+    audio.pause();
+}
+
+function setVolume(value) {
+    audio.volume = value;
+}
+
+
+// 🎬 Wenn Trailer startet → Musik pausieren
+trailer.addEventListener("play", function() {
+    audio.pause();
+});
+
+// Wenn Trailer pausiert oder endet → Musik weiter
+trailer.addEventListener("pause", function() {
+    audio.play();
+});
+
+trailer.addEventListener("ended", function() {
+    audio.play();
+});
+
+
+// 🖥 Fullscreen
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+</script>
+
+</body>
+</html>
