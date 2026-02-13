@@ -8,8 +8,15 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-body {
+html, body {
     margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Kein Scroll */
+}
+
+body {
     font-family: 'Orbitron', sans-serif; /* Metal Gear Solid Style */
     background: url("background.jpg") no-repeat center center fixed;
     background-size: cover;
@@ -19,20 +26,26 @@ body {
 
 #overlay {
     background: rgba(0,0,0,0.85);
-    min-height: 100vh;
-    padding: 40px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     position: relative;
 }
 
 h1 {
-    font-size: 42px;
+    font-size: 36px;
     text-shadow: 0 0 15px gold, 0 0 30px black;
     margin-bottom: 20px;
 }
 
 #countdown {
-    font-size: 48px;
-    margin: 20px 0;
+    font-size: 36px;
+    margin: 10px 0;
     text-shadow: 0 0 15px gold, 0 0 30px black;
     position: fixed;
     top: 10px;
@@ -40,18 +53,18 @@ h1 {
     transform: translateX(-50%);
     z-index: 1000;
     background: rgba(0,0,0,0.5);
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 8px 16px;
+    border-radius: 8px;
 }
 
 button {
     background: black;
     border: 2px solid gold;
     color: gold;
-    padding: 10px 20px;
+    padding: 8px 16px;
     margin: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 button:hover {
@@ -60,38 +73,36 @@ button:hover {
 }
 
 input[type=range] {
-    width: 200px;
+    width: 150px;
 }
 
 #trailerContainer {
-    margin-top: 30px;
+    margin-top: 20px;
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
+    flex-shrink: 0;
 }
 
 #trailer {
     width: 100%;
     border: 2px solid gold;
-    display: none; /* versteckt, bis aufklappbar */
+    display: none; /* Aufklappbar */
 }
 
 .toggleButton {
     background: black;
     border: 2px solid gold;
     color: gold;
-    padding: 10px 20px;
+    padding: 8px 16px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 .toggleButton:hover {
     background: gold;
     color: black;
 }
-
 </style>
 </head>
 
@@ -120,7 +131,7 @@ Lautstärke:
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🎬 Trailer Container mit Aufklappfunktion -->
+<!-- 🎬 Trailer Container -->
 <div id="trailerContainer">
     <button class="toggleButton" onclick="toggleTrailer()">▶ Trailer anzeigen/ausblenden</button>
     <video id="trailer" controls>
@@ -132,13 +143,19 @@ Lautstärke:
 </div>
 
 <script>
-// 🎯 Release Datum
-const targetDate = new Date("2026-09-30T00:00:00").getTime();
+// 🎯 Release Datum: 27. August 2026, 16:00 Uhr deutscher Zeit (CEST/UTC+2)
+const targetDate = new Date(Date.UTC(2026, 7, 27, 14, 0, 0)).getTime(); 
+// 14:00 UTC = 16:00 Uhr deutscher Zeit
 
-// Countdown fest (fixiert)
+// Countdown fixiert
 function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
+
+    if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "Veröffentlicht!";
+        return;
+    }
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
