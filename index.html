@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MGS Master Collection Vol.2 Countdown</title>
+<title>MGS Master Collection Vol.2</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
@@ -14,9 +14,6 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden; /* Kein Scroll */
-}
-
-body {
     font-family: 'Orbitron', sans-serif;
     background: url("background.jpg") no-repeat center center fixed;
     background-size: cover;
@@ -70,20 +67,6 @@ button:hover {
 input[type=range] {
     width: 150px;
 }
-
-#trailerButton {
-    margin-top: 20px;
-    font-size: 16px;
-    padding: 10px 20px;
-    background: black;
-    border: 2px solid gold;
-    color: gold;
-}
-
-#trailerButton:hover {
-    background: gold;
-    color: black;
-}
 </style>
 </head>
 
@@ -92,75 +75,70 @@ input[type=range] {
 <div id="overlay">
 
 <h1>METAL GEAR SOLID Master Collection Vol. 2 Veröffentlichung</h1>
-
 <div id="countdown"></div>
 
 <div>
-<button onclick="playAudio()">▶ Play Music</button>
-<button onclick="pauseAudio()">⏸ Pause Music</button>
-<button onclick="toggleFullscreen()">⛶ Fullscreen</button>
-
-<br><br>
-
-Lautstärke:
-<input type="range" min="0" max="1" step="0.01" value="0.5"
-       oninput="setVolume(this.value)">
+    <button onclick="playAudio()">▶ Play Music</button>
+    <button onclick="pauseAudio()">⏸ Pause Music</button>
+    <button onclick="toggleFullscreen()">⛶ Fullscreen</button>
+    <br><br>
+    Lautstärke:
+    <input type="range" min="0" max="1" step="0.01" value="0.3" oninput="setVolume(this.value)">
 </div>
 
-<!-- Neuer Button für Trailer-Seite -->
-<button id="trailerButton" onclick="goToTrailer()">▶ Zum Trailer</button>
+<!-- Buttons für Quiz und Trailer -->
+<button onclick="window.location.href='mgs4quiz.html'">▶ MGS4 Quiz starten</button>
+<button onclick="window.location.href='trailer.html'">▶ Zum Trailer</button>
 
-<!-- 🎵 Hintergrundmusik -->
-<audio id="bgMusic" loop>
+<!-- Hintergrundmusik -->
+<audio id="bgMusic" loop autoplay>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 </div>
 
 <script>
-// 🎯 Countdown auf 27. August 2026, 16:00 Uhr deutscher Zeit
-const targetDate = new Date(Date.UTC(2026, 7, 27, 14, 0, 0)).getTime(); 
+// Countdown auf 27. August 2026, 16:00 Uhr deutscher Zeit
+const targetDate = new Date(Date.UTC(2026, 7, 27, 14, 0, 0)).getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "Veröffentlicht!";
+    if(distance < 0){
+        document.getElementById("countdown").textContent = "Veröffentlicht!";
         return;
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((distance % (1000*60)) / 1000);
 
-    document.getElementById("countdown").innerHTML =
+    document.getElementById("countdown").textContent =
         days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 }
+
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// 🎵 Audio Steuerung
+// Audio-Steuerung
 const audio = document.getElementById("bgMusic");
-document.addEventListener("click", function() { audio.play().catch(()=>{}); }, { once: true });
+audio.volume = 0.3;
 
-function playAudio() { audio.play(); }
-function pauseAudio() { audio.pause(); }
-function setVolume(value) { audio.volume = value; }
+document.addEventListener("click", function(){ audio.play().catch(()=>{}); }, { once:true });
 
-// 🖥 Fullscreen
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
+function playAudio(){ audio.play(); }
+function pauseAudio(){ audio.pause(); }
+function setVolume(value){ audio.volume = value; }
+
+// Fullscreen
+function toggleFullscreen(){
+    if(!document.fullscreenElement){
         document.documentElement.requestFullscreen();
     } else {
         document.exitFullscreen();
     }
-}
-
-// 🔗 Zum Trailer: neue Seite
-function goToTrailer() {
-    window.location.href = "trailer.html"; // Hier die Trailer-Seite
 }
 </script>
 
