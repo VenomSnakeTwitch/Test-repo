@@ -17,7 +17,7 @@ html, body {
 }
 
 body {
-    font-family: 'Orbitron', sans-serif; /* Metal Gear Solid Style */
+    font-family: 'Orbitron', sans-serif;
     background: url("background.jpg") no-repeat center center fixed;
     background-size: cover;
     color: gold;
@@ -34,7 +34,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    position: relative;
 }
 
 h1 {
@@ -43,12 +42,10 @@ h1 {
     margin-bottom: 10px;
 }
 
-/* Countdown direkt unter Titel */
 #countdown {
     font-size: 36px;
-    margin: 10px 0 30px 0; /* Abstand nach unten */
+    margin: 10px 0 30px 0;
     text-shadow: 0 0 15px gold, 0 0 30px black;
-    position: static; /* nicht mehr fixed */
     background: rgba(0,0,0,0.5);
     padding: 8px 16px;
     border-radius: 8px;
@@ -74,30 +71,16 @@ input[type=range] {
     width: 150px;
 }
 
-#trailerContainer {
+#trailerButton {
     margin-top: 20px;
-    width: 80%;
-    text-align: center;
-    flex-shrink: 0;
-}
-
-#trailer {
-    width: 100%;
-    border: 2px solid gold;
-    display: none; /* Aufklappbar */
-}
-
-.toggleButton {
+    font-size: 16px;
+    padding: 10px 20px;
     background: black;
     border: 2px solid gold;
     color: gold;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
 }
 
-.toggleButton:hover {
+#trailerButton:hover {
     background: gold;
     color: black;
 }
@@ -124,28 +107,20 @@ Lautstärke:
        oninput="setVolume(this.value)">
 </div>
 
+<!-- Neuer Button für Trailer-Seite -->
+<button id="trailerButton" onclick="goToTrailer()">▶ Zum Trailer</button>
+
 <!-- 🎵 Hintergrundmusik -->
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🎬 Trailer Container -->
-<div id="trailerContainer">
-    <button class="toggleButton" onclick="toggleTrailer()">▶ Trailer anzeigen/ausblenden</button>
-    <video id="trailer" controls>
-        <source src="trailer.mp4" type="video/mp4">
-        Dein Browser unterstützt kein HTML5 Video.
-    </video>
-</div>
-
 </div>
 
 <script>
-// 🎯 Release Datum: 27. August 2026, 16:00 Uhr deutscher Zeit (CEST/UTC+2)
+// 🎯 Countdown auf 27. August 2026, 16:00 Uhr deutscher Zeit
 const targetDate = new Date(Date.UTC(2026, 7, 27, 14, 0, 0)).getTime(); 
-// 14:00 UTC = 16:00 Uhr deutscher Zeit
 
-// Countdown unter Titel
 function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
@@ -168,21 +143,11 @@ updateCountdown();
 
 // 🎵 Audio Steuerung
 const audio = document.getElementById("bgMusic");
-const trailer = document.getElementById("trailer");
-
-// Musik starten nach erstem Klick (Browser Autoplay Schutz)
-document.addEventListener("click", function() {
-    audio.play().catch(()=>{});
-}, { once: true });
+document.addEventListener("click", function() { audio.play().catch(()=>{}); }, { once: true });
 
 function playAudio() { audio.play(); }
 function pauseAudio() { audio.pause(); }
 function setVolume(value) { audio.volume = value; }
-
-// 🎬 Trailer pausiert Musik
-trailer.addEventListener("play", () => audio.pause());
-trailer.addEventListener("pause", () => audio.play());
-trailer.addEventListener("ended", () => audio.play());
 
 // 🖥 Fullscreen
 function toggleFullscreen() {
@@ -193,16 +158,10 @@ function toggleFullscreen() {
     }
 }
 
-// 🔽 Trailer aufklappbar/einklappbar
-function toggleTrailer() {
-    const vid = document.getElementById("trailer");
-    if (vid.style.display === "none") {
-        vid.style.display = "block";
-    } else {
-        vid.style.display = "none";
-    }
+// 🔗 Zum Trailer: neue Seite
+function goToTrailer() {
+    window.location.href = "trailer.html"; // Hier die Trailer-Seite
 }
-
 </script>
 
 </body>
