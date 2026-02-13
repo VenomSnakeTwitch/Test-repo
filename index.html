@@ -6,12 +6,14 @@
 <title>MGS Master Collection Vol.2 Countdown</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron', sans-serif; /* Metal Gear Solid Style */
     background: url("background.jpg") no-repeat center center fixed;
     background-size: cover;
-    color: #00ff99;
+    color: gold;
     text-align: center;
 }
 
@@ -19,23 +21,33 @@ body {
     background: rgba(0,0,0,0.85);
     min-height: 100vh;
     padding: 40px;
+    position: relative;
 }
 
 h1 {
     font-size: 42px;
-    text-shadow: 0 0 20px #00ff99;
+    text-shadow: 0 0 15px gold, 0 0 30px black;
+    margin-bottom: 20px;
 }
 
 #countdown {
     font-size: 48px;
     margin: 20px 0;
-    text-shadow: 0 0 20px #00ff99;
+    text-shadow: 0 0 15px gold, 0 0 30px black;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
 }
 
 button {
     background: black;
-    border: 2px solid #00ff99;
-    color: #00ff99;
+    border: 2px solid gold;
+    color: gold;
     padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
@@ -43,7 +55,7 @@ button {
 }
 
 button:hover {
-    background: #00ff99;
+    background: gold;
     color: black;
 }
 
@@ -51,11 +63,35 @@ input[type=range] {
     width: 200px;
 }
 
-video {
+#trailerContainer {
     margin-top: 30px;
     width: 80%;
-    border: 2px solid #00ff99;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
+
+#trailer {
+    width: 100%;
+    border: 2px solid gold;
+    display: none; /* versteckt, bis aufklappbar */
+}
+
+.toggleButton {
+    background: black;
+    border: 2px solid gold;
+    color: gold;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.toggleButton:hover {
+    background: gold;
+    color: black;
+}
+
 </style>
 </head>
 
@@ -63,7 +99,8 @@ video {
 
 <div id="overlay">
 
-<h1>METAL GEAR SOLID: Master Collection Vol.2</h1>
+<h1>METAL GEAR SOLID Master Collection Vol. 2 Veröffentlichung</h1>
+
 <div id="countdown"></div>
 
 <div>
@@ -83,21 +120,23 @@ Lautstärke:
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- 🎬 Lokaler Trailer -->
-<video id="trailer" controls>
-    <source src="trailer.mp4" type="video/mp4">
-    Dein Browser unterstützt kein HTML5 Video.
-</video>
+<!-- 🎬 Trailer Container mit Aufklappfunktion -->
+<div id="trailerContainer">
+    <button class="toggleButton" onclick="toggleTrailer()">▶ Trailer anzeigen/ausblenden</button>
+    <video id="trailer" controls>
+        <source src="trailer.mp4" type="video/mp4">
+        Dein Browser unterstützt kein HTML5 Video.
+    </video>
+</div>
 
 </div>
 
 <script>
-
-// 🎯 Release Datum anpassen falls nötig
+// 🎯 Release Datum
 const targetDate = new Date("2026-09-30T00:00:00").getTime();
 
-setInterval(function() {
-
+// Countdown fest (fixiert)
+function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
@@ -108,9 +147,9 @@ setInterval(function() {
 
     document.getElementById("countdown").innerHTML =
         days + "d " + hours + "h " + minutes + "m " + seconds + "s";
-
-}, 1000);
-
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
 // 🎵 Audio Steuerung
 const audio = document.getElementById("bgMusic");
@@ -121,33 +160,14 @@ document.addEventListener("click", function() {
     audio.play().catch(()=>{});
 }, { once: true });
 
-function playAudio() {
-    audio.play();
-}
+function playAudio() { audio.play(); }
+function pauseAudio() { audio.pause(); }
+function setVolume(value) { audio.volume = value; }
 
-function pauseAudio() {
-    audio.pause();
-}
-
-function setVolume(value) {
-    audio.volume = value;
-}
-
-
-// 🎬 Wenn Trailer startet → Musik pausieren
-trailer.addEventListener("play", function() {
-    audio.pause();
-});
-
-// Wenn Trailer pausiert oder endet → Musik weiter
-trailer.addEventListener("pause", function() {
-    audio.play();
-});
-
-trailer.addEventListener("ended", function() {
-    audio.play();
-});
-
+// 🎬 Trailer pausiert Musik
+trailer.addEventListener("play", () => audio.pause());
+trailer.addEventListener("pause", () => audio.play());
+trailer.addEventListener("ended", () => audio.play());
 
 // 🖥 Fullscreen
 function toggleFullscreen() {
@@ -155,6 +175,16 @@ function toggleFullscreen() {
         document.documentElement.requestFullscreen();
     } else {
         document.exitFullscreen();
+    }
+}
+
+// 🔽 Trailer aufklappbar/einklappbar
+function toggleTrailer() {
+    const vid = document.getElementById("trailer");
+    if (vid.style.display === "none") {
+        vid.style.display = "block";
+    } else {
+        vid.style.display = "none";
     }
 }
 
