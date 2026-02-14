@@ -31,6 +31,7 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* Buttons Style */
 button {
     background: black;
     border: 2px solid gold;
@@ -39,16 +40,53 @@ button {
     margin: 5px;
     cursor: pointer;
     font-size: 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
 button:hover {
     background: gold;
     color: black;
+    transform: scale(1.05);
 }
 
-input[type=range], select {
+/* Fortschritt & Lautstärke Regler */
+input[type=range] {
+    -webkit-appearance: none;
     width: 200px;
-    margin-top: 10px;
+    height: 10px;
+    background: black;
+    border: 2px solid gold;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: gold;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type=range]:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+}
+
+/* Firefox */
+input[type=range]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: gold;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 #progressContainer {
@@ -63,27 +101,16 @@ input[type=range], select {
     margin: 0 10px;
 }
 
-#timeLabel {
+#timeLabel, #durationLabel {
     width: 80px;
     text-align: center;
-}
-
-#footer {
-    position: fixed;
-    bottom: 10px;
-    left: 10px;
-    color: gold;
-    font-size: 14px;
-    text-shadow: 0 0 5px black;
-    z-index: 1000;
 }
 
 @media (max-width: 600px){
     h1 { font-size: 24px; }
     button { padding: 8px 16px; font-size: 14px; }
-    input[type=range], select { width: 150px; }
-    #timeLabel { width: 60px; font-size: 12px; }
-    #footer { font-size: 12px; }
+    input[type=range] { width: 150px; }
+    #timeLabel, #durationLabel { width: 60px; font-size: 12px; }
 }
 </style>
 </head>
@@ -122,11 +149,6 @@ input[type=range], select {
         <select id="songSelect" onchange="selectSong()"></select>
         <button onclick="downloadSong()">⬇️ Download</button>
     </div>
-</div>
-
-<!-- Footer -->
-<div id="footer">
-    © 2026 VenomSnake_Twitch. Alle Rechte vorbehalten.
 </div>
 
 <script>
