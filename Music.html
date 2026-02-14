@@ -51,10 +51,28 @@ input[type=range], select {
     margin-top: 10px;
 }
 
+#progressContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#progress {
+    flex: 1;
+    margin: 0 10px;
+}
+
+#timeLabel {
+    width: 80px;
+    text-align: center;
+}
+
 @media (max-width: 600px){
     h1 { font-size: 24px; }
     button { padding: 8px 16px; font-size: 14px; }
     input[type=range], select { width: 150px; }
+    #timeLabel { width: 60px; font-size: 12px; }
 }
 </style>
 </head>
@@ -80,6 +98,12 @@ input[type=range], select {
     <div>
         Lautstärke: 
         <input type="range" min="0" max="1" step="0.01" value="0.3" id="volumeSlider" oninput="setVolume(this.value)">
+    </div>
+
+    <div id="progressContainer">
+        <span id="timeLabel">0:00</span>
+        <input type="range" id="progress" min="0" max="100" value="0" oninput="seekSong(this.value)">
+        <span id="durationLabel">0:00</span>
     </div>
 
     <div>
@@ -108,6 +132,9 @@ const audio = document.getElementById("audioPlayer");
 const currentSongLabel = document.getElementById("currentSong");
 const playPauseBtn = document.getElementById("playPauseBtn");
 const songSelect = document.getElementById("songSelect");
+const progress = document.getElementById("progress");
+const timeLabel = document.getElementById("timeLabel");
+const durationLabel = document.getElementById("durationLabel");
 
 // Dropdown füllen
 songs.forEach((song, index) => {
@@ -116,6 +143,13 @@ songs.forEach((song, index) => {
     option.textContent = song;
     songSelect.appendChild(option);
 });
+
+// Formatieren von Sekunden in MM:SS
+function formatTime(seconds){
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2,'0')}`;
+}
 
 // Laden eines Songs
 function loadSong(index){
@@ -179,6 +213,19 @@ function downloadSong(){
     link.href = songs[currentIndex];
     link.download = songs[currentIndex];
     link.click();
+}
+
+// Song Fortschritt aktualisieren
+audio.addEventListener("timeupdate", () => {
+    const percent = (audio.currentTime / audio.duration) * 100;
+    progress.value = percent || 0;
+    timeLabel.textContent = formatTime(audio.currentTime);
+    durationLabel.textContent = formatTime(audio.duration || 0);
+});
+
+// Im Song springen
+function seekSong(value){
+    audio.currentTime = (value / 100) * audio.duration;
 }
 
 // Autoplay nächsten Track
