@@ -81,6 +81,13 @@ input[type=range]::-webkit-slider-thumb {
     font-size: 14px;
 }
 
+@media (max-width: 600px){
+    h1 { font-size: 24px; }
+    button, select { padding: 8px 16px; font-size: 14px; }
+    input[type=range] { width: 180px; }
+    #timeLabel, #durationLabel { font-size: 12px; width: 40px; }
+}
+
 /* 🔥 Copyright Styling */
 #copyright {
     position: fixed;
@@ -95,18 +102,10 @@ input[type=range]::-webkit-slider-thumb {
     pointer-events: none;
 }
 
-/* HUD Pulsieren */
 @keyframes pulseGlow {
     0%   { opacity: 0.6; text-shadow: 0 0 5px gold, 0 0 10px black; }
     50%  { opacity: 1;   text-shadow: 0 0 12px gold, 0 0 25px black; }
     100% { opacity: 0.6; text-shadow: 0 0 5px gold, 0 0 10px black; }
-}
-
-@media (max-width: 600px){
-    h1 { font-size: 24px; }
-    button, select { padding: 8px 16px; font-size: 14px; }
-    input[type=range] { width: 180px; }
-    #timeLabel, #durationLabel { font-size: 12px; width: 40px; }
 }
 </style>
 </head>
@@ -116,7 +115,7 @@ input[type=range]::-webkit-slider-thumb {
     <h1>MGS4 Music Player</h1>
     <h2 id="currentSong">▶ 01. Old Snake.mp3</h2>
 
-    <audio id="audioPlayer" autoplay>
+    <audio id="audioPlayer">
         <source src="01. Old Snake.mp3" type="audio/mpeg">
         Dein Browser unterstützt kein Audio-Element.
     </audio>
@@ -183,24 +182,23 @@ songs.forEach((song, index) => {
     songSelect.appendChild(option);
 });
 
-// Formatieren von Sekunden in MM:SS
+// Zeit formatieren
 function formatTime(seconds){
     const m = Math.floor(seconds / 60);
     const s = Math.floor(seconds % 60);
     return `${m}:${s.toString().padStart(2,'0')}`;
 }
 
-// Laden eines Songs
+// Song laden (kein Autoplay)
 function loadSong(index){
     currentIndex = index;
     audio.src = songs[index];
     currentSongLabel.textContent = "▶ " + songs[index];
     songSelect.value = index;
-    audio.play();
-    playPauseBtn.textContent = "⏸ Pause";
+    playPauseBtn.textContent = "▶ Play";
 }
 
-// Play/Pause Toggle
+// Play/Pause
 function togglePlay(){
     if(audio.paused){
         audio.play();
@@ -218,35 +216,17 @@ function stopSong(){
     playPauseBtn.textContent = "▶ Play";
 }
 
-// Nächster Song
-function nextSong(){
-    currentIndex = (currentIndex + 1) % songs.length;
-    loadSong(currentIndex);
-}
+// Nächster/Vorheriger
+function nextSong(){ loadSong((currentIndex+1)%songs.length); togglePlay(); }
+function prevSong(){ loadSong((currentIndex-1+songs.length)%songs.length); togglePlay(); }
 
-// Vorheriger Song
-function prevSong(){
-    currentIndex = (currentIndex - 1 + songs.length) % songs.length;
-    loadSong(currentIndex);
-}
+// Lautstärke
+function setVolume(value){ audio.volume = value; }
 
-// Lautstärke setzen
-function setVolume(value){
-    audio.volume = value;
-}
+// Dropdown auswählen
+function selectSong(){ loadSong(parseInt(songSelect.value)); togglePlay(); }
 
-// Zum Hauptmenü
-function goToMenu(){
-    window.location.href = "index.html";
-}
-
-// Song über Dropdown auswählen
-function selectSong(){
-    const index = parseInt(songSelect.value);
-    loadSong(index);
-}
-
-// Download des aktuellen Songs
+// Download
 function downloadSong(){
     const link = document.createElement("a");
     link.href = songs[currentIndex];
@@ -254,27 +234,24 @@ function downloadSong(){
     link.click();
 }
 
-// Song Fortschritt aktualisieren
+// Fortschritt
 audio.addEventListener("timeupdate", () => {
-    const percent = (audio.currentTime / audio.duration) * 100;
-    progress.value = percent || 0;
+    if(audio.duration){
+        progress.value = (audio.currentTime/audio.duration)*100;
+        durationLabel.textContent = formatTime(audio.duration);
+    }
     timeLabel.textContent = formatTime(audio.currentTime);
-    durationLabel.textContent = formatTime(audio.duration || 0);
 });
 
-// Im Song springen
-function seekSong(value){
-    audio.currentTime = (value / 100) * audio.duration;
-}
+function seekSong(value){ audio.currentTime = (value/100)*audio.duration; }
 
 // Autoplay nächsten Track
 audio.addEventListener("ended", nextSong);
 
-// Initiale Lautstärke
+// Start
 audio.volume = 0.3;
-
-// Startsong setzen
 loadSong(currentIndex);
 </script>
+
 </body>
 </html>
