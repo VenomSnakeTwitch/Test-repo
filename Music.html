@@ -31,8 +31,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Buttons Style */
-button {
+button, select {
     background: black;
     border: 2px solid gold;
     color: gold;
@@ -40,53 +39,32 @@ button {
     margin: 5px;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 6px;
+    border-radius: 5px;
     transition: all 0.2s ease;
 }
 
-button:hover {
+button:hover, select:hover {
     background: gold;
     color: black;
-    transform: scale(1.05);
 }
 
-/* Fortschritt & Lautstärke Regler */
 input[type=range] {
+    width: 250px;
+    margin-top: 10px;
     -webkit-appearance: none;
-    width: 200px;
-    height: 10px;
-    background: black;
-    border: 2px solid gold;
-    border-radius: 5px;
-    margin: 10px;
+    background: gold;
+    height: 8px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    background: gold;
-    border: 2px solid black;
+    width: 16px;
+    height: 16px;
+    background: black;
+    border: 2px solid gold;
     border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-input[type=range]:hover::-webkit-slider-thumb {
-    transform: scale(1.2);
-}
-
-/* Firefox */
-input[type=range]::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    background: gold;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 #progressContainer {
@@ -94,37 +72,33 @@ input[type=range]::-moz-range-thumb {
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-}
-
-#progress {
-    flex: 1;
-    margin: 0 10px;
+    gap: 10px;
 }
 
 #timeLabel, #durationLabel {
-    width: 80px;
+    width: 50px;
     text-align: center;
+    font-size: 14px;
 }
 
 @media (max-width: 600px){
     h1 { font-size: 24px; }
-    button { padding: 8px 16px; font-size: 14px; }
-    input[type=range] { width: 150px; }
-    #timeLabel, #durationLabel { width: 60px; font-size: 12px; }
+    button, select { padding: 8px 16px; font-size: 14px; }
+    input[type=range] { width: 180px; }
+    #timeLabel, #durationLabel { font-size: 12px; width: 40px; }
 }
 </style>
 </head>
 <body>
 <div id="overlay">
     <h1>MGS4 Music Player</h1>
-    
     <h2 id="currentSong">▶ 01. Old Snake.mp3</h2>
     
     <audio id="audioPlayer" autoplay>
         <source src="01. Old Snake.mp3" type="audio/mpeg">
         Dein Browser unterstützt kein Audio-Element.
     </audio>
-    
+
     <div>
         <button onclick="prevSong()">⏮ Vorheriger</button>
         <button id="playPauseBtn" onclick="togglePlay()">▶ Play</button>
@@ -134,7 +108,7 @@ input[type=range]::-moz-range-thumb {
     </div>
 
     <div>
-        Lautstärke: 
+        Lautstärke:
         <input type="range" min="0" max="1" step="0.01" value="0.3" id="volumeSlider" oninput="setVolume(this.value)">
     </div>
 
