@@ -20,7 +20,7 @@ html, body {
     color: gold;
 }
 
-/* Schwarzer Transparenz-Hintergrund auf gesamte Seite, **hinter allem Inhalt** */
+/* Schwarzer Transparenz-Hintergrund auf gesamte Seite, hinter allem Inhalt */
 #backgroundOverlay {
     position: fixed;
     top: 0;
@@ -189,6 +189,17 @@ h1 {
     border: 2px solid black;
     transition: all 0.2s ease;
 }
+
+/* Footer unten links */
+#footer {
+    position: fixed;       /* immer sichtbar am unteren Rand */
+    bottom: 10px;          /* Abstand vom unteren Rand */
+    left: 10px;            /* Abstand von links */
+    color: gold;           /* Schriftfarbe passend zum Theme */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    z-index: 1002;         /* über dem Overlay und Content */
+}
 </style>
 </head>
 
@@ -242,6 +253,11 @@ h1 {
 <audio id="bgMusic" loop autoplay>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
+</div>
+
+<!-- Footer -->
+<div id="footer">
+    © 2026 VenomSnake_Twitch. Alle Rechte vorbehalten.
 </div>
 
 <script>
