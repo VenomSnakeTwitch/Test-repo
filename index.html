@@ -45,6 +45,8 @@ html, body {
     border: 2px solid gold;
     color: gold;
     cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s ease;
 }
 
 #menuButtons button:hover {
@@ -59,6 +61,8 @@ html, body {
     border: 2px solid gold;
     color: gold;
     cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s ease;
 }
 
 #fullscreenBtn:hover {
@@ -66,7 +70,7 @@ html, body {
     color: black;
 }
 
-/* Content */
+/* Content Bereich mit schwarzem Transparent-Hintergrund */
 #overlay {
     margin-top: 70px; /* Platz für die Leiste */
     padding: 20px;
@@ -75,8 +79,15 @@ html, body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background: rgba(0,0,0,0.85); /* Schwarzer Transparenz-Hintergrund */
+    width: 90%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
 }
 
+/* Countdown */
 h1 {
     font-size: 36px;
     text-shadow: 0 0 15px gold, 0 0 30px black;
@@ -114,12 +125,56 @@ h1 {
     text-shadow: 0 0 25px gold;
 }
 
-button {
+/* Musiksteuerung */
+.music-controls button {
+    background: black;
+    border: 2px solid gold;
+    color: gold;
+    padding: 10px 20px;
     margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
 }
 
-input[type=range] {
+.music-controls button:hover {
+    background: gold;
+    color: black;
+}
+
+/* Lautstärke Slider im Button-Design */
+.volume-slider {
+    -webkit-appearance: none;
     width: 150px;
+    height: 12px;
+    background: black;
+    border: 2px solid gold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: gold;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid black;
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: gold;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid black;
+    transition: all 0.2s ease;
 }
 </style>
 </head>
@@ -132,7 +187,6 @@ input[type=range] {
         <button onclick="window.location.href='mgs4quiz.html'">▶ MGS4 Quiz starten</button>
         <button onclick="window.location.href='trailer.html'">▶ Zum Trailer</button>
         <button onclick="window.location.href='Music.html'">▶ Music-Seite</button>
-        <!-- Hier können später weitere Buttons hinzugefügt werden -->
     </div>
     <button id="fullscreenBtn" onclick="toggleFullscreen()">⛶ Vollbild</button>
 </div>
@@ -160,12 +214,13 @@ input[type=range] {
     </div>
 </div>
 
-<div>
+<!-- Musiksteuerung -->
+<div class="music-controls">
     <button onclick="playAudio()">▶ Play Music</button>
     <button onclick="pauseAudio()">⏸ Pause Music</button>
     <br><br>
     Lautstärke:
-    <input type="range" min="0" max="1" step="0.01" value="0.3" oninput="setVolume(this.value)">
+    <input type="range" min="0" max="1" step="0.01" value="0.3" oninput="setVolume(this.value)" class="volume-slider">
 </div>
 
 <audio id="bgMusic" loop autoplay>
@@ -175,7 +230,7 @@ input[type=range] {
 
 <script>
 // Countdown
-const targetDate = new Date(Date.UTC(2026, 7, 27, 14, 0, 0)).getTime();
+const targetDate = new Date(Date.UTC(2026, 7, 27, 16, 0, 0)).getTime();
 
 function updateUnit(id, value) {
     const el = document.getElementById(id);
