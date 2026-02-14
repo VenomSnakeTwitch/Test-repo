@@ -28,10 +28,18 @@ button:hover { background:gold; color:black; }
 
 <div id="difficultySelection">
     <p>Wähle Schwierigkeitsgrad:</p>
+    
     <button onclick="startQuiz('easy')">Easy</button>
     <button onclick="startQuiz('medium')">Medium</button>
     <button onclick="startQuiz('hard')">Hard</button>
+
+    <br><br>
+
+    <button onclick="window.location.href='index.html'">
+        ⬅ Zurück zur Startseite
+    </button>
 </div>
+
 
 <div id="quizContainer" style="display:none;">
     <div id="timer">⏱ 30s</div>
