@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MGS4 Music Player</title>
+<title>MGS4 Codec Music Player</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
+/* 🔥 Body & Hintergrund */
 body {
     margin: 0;
     padding: 0;
@@ -15,22 +16,52 @@ body {
     background-size: cover;
     color: gold;
     text-align: center;
+    overflow-x: hidden;
 }
 
-#overlay {
-    background: rgba(0,0,0,0.85);
+/* Scanlines Overlay */
+#scanlines {
+    position: fixed;
+    top:0; left:0;
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 1px,
+        rgba(0,0,0,0.05) 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Overlay Panel */
+#overlay {
+    position: relative;
+    z-index: 2;
+    background: rgba(0,0,0,0.85);
+    width: 80%;
+    max-width: 600px;
+    margin: 40px auto;
     padding: 20px;
-    box-sizing: border-box;
+    border: 2px solid gold;
+    border-radius: 10px;
+    box-shadow: 0 0 20px gold;
 }
 
+/* Header */
 h1 {
-    font-size: 32px;
-    text-shadow: 0 0 15px gold, 0 0 30px black;
-    margin-bottom: 20px;
+    font-size: 28px;
+    text-shadow: 0 0 10px gold, 0 0 20px black;
+    margin-bottom: 15px;
+}
+h2 {
+    font-size: 20px;
+    text-shadow: 0 0 8px gold, 0 0 15px black;
+    margin-bottom: 15px;
 }
 
+/* Buttons & Dropdowns */
 button, select {
     background: black;
     border: 2px solid gold;
@@ -42,12 +73,12 @@ button, select {
     border-radius: 5px;
     transition: all 0.2s ease;
 }
-
 button:hover, select:hover {
     background: gold;
     color: black;
 }
 
+/* Range Slider */
 input[type=range] {
     width: 250px;
     margin-top: 10px;
@@ -57,7 +88,6 @@ input[type=range] {
     border-radius: 4px;
     cursor: pointer;
 }
-
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 16px;
@@ -67,6 +97,7 @@ input[type=range]::-webkit-slider-thumb {
     border-radius: 50%;
 }
 
+/* Fortschrittsbalken */
 #progressContainer {
     display: flex;
     align-items: center;
@@ -74,26 +105,61 @@ input[type=range]::-webkit-slider-thumb {
     margin-top: 10px;
     gap: 10px;
 }
-
 #timeLabel, #durationLabel {
     width: 50px;
     text-align: center;
     font-size: 14px;
+    text-shadow: 0 0 5px gold;
 }
 
+/* Vollbild-Button */
+#fullscreenBtn {
+    background: black;
+    border: 2px solid gold;
+    color: gold;
+    padding: 8px 16px;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+#fullscreenBtn:hover {
+    background: gold;
+    color: black;
+}
+
+/* Copyright */
+#copyright {
+    position: fixed;
+    bottom: 10px;
+    left: 15px;
+    font-size: 12px;
+    color: gold;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow: 0 0 8px gold, 0 0 15px black;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+/* Media Queries */
 @media (max-width: 600px){
     h1 { font-size: 24px; }
-    button, select { padding: 8px 16px; font-size: 14px; }
+    h2 { font-size: 16px; }
+    button, select { padding: 6px 12px; font-size: 14px; }
     input[type=range] { width: 180px; }
     #timeLabel, #durationLabel { font-size: 12px; width: 40px; }
 }
 </style>
 </head>
 <body>
+
+<div id="scanlines"></div>
+
 <div id="overlay">
-    <h1>MGS4 Music Player</h1>
+    <h1>MGS4 Codec Player</h1>
     <h2 id="currentSong">▶ 01. Old Snake.mp3</h2>
-    
+
     <audio id="audioPlayer" autoplay>
         <source src="01. Old Snake.mp3" type="audio/mpeg">
         Dein Browser unterstützt kein Audio-Element.
@@ -119,13 +185,20 @@ input[type=range]::-webkit-slider-thumb {
     </div>
 
     <div>
-        Song auswählen: 
+        Song auswählen:
         <select id="songSelect" onchange="selectSong()"></select>
         <button onclick="downloadSong()">⬇️ Download</button>
     </div>
+
+    <button id="fullscreenBtn" onclick="toggleFullScreen()">🔲 Vollbild</button>
+</div>
+
+<div id="copyright">
+    © 2026 VenomSnake_Twitch – Alle Rechte vorbehalten
 </div>
 
 <script>
+// Songs Array
 const songs = [
 "01. Old Snake.mp3","02. Love Theme.mp3","03. Gekko.mp3","04. Haven Troopers.mp3","05. BB Corps.mp3",
 "06. Drebin 893.mp3","07. Vista Mansion.mp3","08. Laughing Octopus.mp3","09. Breakthrough.mp3","10. Endless Pain.mp3",
@@ -139,6 +212,7 @@ const songs = [
 "46. For Liberty.mp3","47. Surrounded.mp3"
 ];
 
+// Elemente
 let currentIndex = 0;
 const audio = document.getElementById("audioPlayer");
 const currentSongLabel = document.getElementById("currentSong");
@@ -156,14 +230,13 @@ songs.forEach((song, index) => {
     songSelect.appendChild(option);
 });
 
-// Formatieren von Sekunden in MM:SS
+// Funktionen
 function formatTime(seconds){
     const m = Math.floor(seconds / 60);
     const s = Math.floor(seconds % 60);
     return `${m}:${s.toString().padStart(2,'0')}`;
 }
 
-// Laden eines Songs
 function loadSong(index){
     currentIndex = index;
     audio.src = songs[index];
@@ -173,7 +246,6 @@ function loadSong(index){
     playPauseBtn.textContent = "⏸ Pause";
 }
 
-// Play/Pause Toggle
 function togglePlay(){
     if(audio.paused){
         audio.play();
@@ -184,42 +256,35 @@ function togglePlay(){
     }
 }
 
-// Stop
 function stopSong(){
     audio.pause();
     audio.currentTime = 0;
     playPauseBtn.textContent = "▶ Play";
 }
 
-// Nächster Song
 function nextSong(){
     currentIndex = (currentIndex + 1) % songs.length;
     loadSong(currentIndex);
 }
 
-// Vorheriger Song
 function prevSong(){
     currentIndex = (currentIndex - 1 + songs.length) % songs.length;
     loadSong(currentIndex);
 }
 
-// Lautstärke setzen
 function setVolume(value){
     audio.volume = value;
 }
 
-// Zum Hauptmenü
 function goToMenu(){
     window.location.href = "index.html";
 }
 
-// Song über Dropdown auswählen
 function selectSong(){
     const index = parseInt(songSelect.value);
     loadSong(index);
 }
 
-// Download des aktuellen Songs
 function downloadSong(){
     const link = document.createElement("a");
     link.href = songs[currentIndex];
@@ -227,7 +292,7 @@ function downloadSong(){
     link.click();
 }
 
-// Song Fortschritt aktualisieren
+// Fortschritt
 audio.addEventListener("timeupdate", () => {
     const percent = (audio.currentTime / audio.duration) * 100;
     progress.value = percent || 0;
@@ -235,19 +300,22 @@ audio.addEventListener("timeupdate", () => {
     durationLabel.textContent = formatTime(audio.duration || 0);
 });
 
-// Im Song springen
 function seekSong(value){
     audio.currentTime = (value / 100) * audio.duration;
 }
 
-// Autoplay nächsten Track
 audio.addEventListener("ended", nextSong);
-
-// Initiale Lautstärke
 audio.volume = 0.3;
-
-// Startsong setzen
 loadSong(currentIndex);
+
+// Vollbild
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
 </script>
 </body>
 </html>
