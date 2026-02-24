@@ -1,88 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MGS Master Collection Vol.2 - Die Chronik</title>
-
+<title>MGS-Enzyklopädie</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@300;400&display=swap');
-
-html, body { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Roboto', sans-serif; background: #000; color: gold; overflow: hidden; }
-
-#backgroundOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 0; }
-
-#mainMenu { position: fixed; top: 0; width: 100%; background: #050505; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; z-index: 1001; border-bottom: 2px solid gold; font-family: 'Orbitron'; }
-button { background: black; border: 2px solid gold; color: gold; padding: 10px 15px; cursor: pointer; border-radius: 5px; font-family: 'Orbitron'; transition: 0.3s; }
-button:hover { background: gold; color: black; }
-
-#archiveModal { display: none; position: fixed; top: 80px; left: 5%; width: 90%; height: 80%; background: #080808; border: 2px solid gold; z-index: 2000; padding: 30px; box-sizing: border-box; }
-.nav-list { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
-
-/* Das scrollbare Buch-Element */
-#loreDisplay { 
-    height: 450px; /* Viel Platz für Text */
-    overflow-y: auto; 
-    border: 1px solid #333; 
-    padding: 25px; 
-    line-height: 1.8; 
-    font-size: 1.1em; 
-    text-align: justify;
-    background: rgba(10, 10, 10, 0.5);
-}
-#loreDisplay::-webkit-scrollbar { width: 8px; }
-#loreDisplay::-webkit-scrollbar-thumb { background: gold; }
-
-#overlay { margin-top: 150px; display: flex; flex-direction: column; align-items: center; z-index: 1; position: relative; }
+body{margin:0;font-family:Arial;background:#0b0b0b;color:#e0e0e0}
+header{background:#000;padding:20px;text-align:center;font-size:32px;letter-spacing:3px;color:#7cff00}
+nav{position:fixed;left:0;top:0;width:280px;height:100vh;background:#050505;overflow-y:auto;padding:10px}
+nav button{width:100%;background:#111;border:1px solid #333;color:#7cff00;padding:10px;margin:4px 0;cursor:pointer;text-align:left}
+nav button:hover{background:#1a1a1a}
+main{margin-left:300px;padding:30px}
+section{margin-bottom:80px}
+h2{color:#7cff00;border-bottom:1px solid #333;padding-bottom:5px}
+p{line-height:1.7}
 </style>
 </head>
-
 <body>
-<div id="backgroundOverlay"></div>
 
-<div id="mainMenu">
-    <button onclick="toggleArchive()">▶ Chronik der Serie</button>
-    <button onclick="toggleFullscreen()">⛶ Vollbild</button>
-</div>
+<audio id="openSound" src="open.mp3"></audio>
+<audio id="closeSound" src="close.mp3"></audio>
 
-<div id="archiveModal">
-    <h2 style="font-family: 'Orbitron'; text-align: center; color: gold;">DIE METAL GEAR CHRONIK</h2>
-    <div class="nav-list" id="gameNav"></div>
-    <div id="loreDisplay"><p>Wähle ein Kapitel aus, um die detaillierte Geschichte zu lesen.</p></div>
-    <button style="margin-top:20px; width: 100%;" onclick="toggleArchive()">[ KAPITEL SCHLIESSEN ]</button>
-</div>
+<nav>
+<button onclick="playOpen();scrollToId('mg1')">Metal Gear (1987)</button>
+<button onclick="playOpen();scrollToId('mg2')">Metal Gear 2: Solid Snake</button>
+<button onclick="playOpen();scrollToId('mgs1')">Metal Gear Solid</button>
+<button onclick="playOpen();scrollToId('mgs2')">Metal Gear Solid 2</button>
+<button onclick="playOpen();scrollToId('mgs3')">Metal Gear Solid 3 / Delta</button>
+<button onclick="playOpen();scrollToId('mgs4')">Metal Gear Solid 4</button>
+<button onclick="playOpen();scrollToId('pw')">Peace Walker</button>
+<button onclick="playOpen();scrollToId('gz')">Ground Zeroes</button>
+<button onclick="playOpen();scrollToId('tpp')">The Phantom Pain</button>
+</nav>
 
-<div id="overlay">
-    <h1>METAL GEAR SOLID</h1>
-    <p>Datenbank für die Master Collection Vol. 2</p>
-</div>
+<main>
+
+<section id="mg1">
+<h2>Metal Gear (1987)</h2>
+<p>Solid Snake wird von FOXHOUND in den Staat Outer Heaven geschickt, um die geheime Superwaffe Metal Gear zu zerstören...</p>
+</section>
+
+<section id="mg2">
+<h2>Metal Gear 2: Solid Snake</h2>
+<p>Snake wird nach Zanzibar Land geschickt, wo Big Boss als Anführer eines Militärstaates zurückgekehrt ist...</p>
+</section>
+
+<section id="mgs1">
+<h2>Metal Gear Solid</h2>
+<p>Auf Shadow Moses Island übernimmt FOXHOUND eine Atomwaffenbasis. Snake muss Liquid Snake stoppen...</p>
+</section>
+
+<section id="mgs2">
+<h2>Metal Gear Solid 2: Sons of Liberty</h2>
+<p>Raiden wird Teil der Big Shell Mission, die sich als Simulation des S3-Plans der Patriots entpuppt...</p>
+</section>
+
+<section id="mgs3">
+<h2>Metal Gear Solid 3 / Delta Snake Eater</h2>
+<p>Naked Snake wird in den Kalten Krieg geschickt, um The Boss zu stoppen. Die Operation Snake Eater endet mit der Geburt von Big Boss...</p>
+</section>
+
+<section id="mgs4">
+<h2>Metal Gear Solid 4: Guns of the Patriots</h2>
+<p>Old Snake kämpft in einer Welt der Kriegsökonomie gegen Liquid Ocelot und die Patriots...</p>
+</section>
+
+<section id="pw">
+<h2>Metal Gear Solid: Peace Walker</h2>
+<p>Big Boss baut MSF auf und kämpft gegen nukleare Abschreckung in Lateinamerika...</p>
+</section>
+
+<section id="gz">
+<h2>Metal Gear Solid V: Ground Zeroes</h2>
+<p>Big Boss infiltriert Camp Omega. Die Mission endet in einer Katastrophe...</p>
+</section>
+
+<section id="tpp">
+<h2>Metal Gear Solid V: The Phantom Pain</h2>
+<p>Venom Snake baut Diamond Dogs auf und kämpft gegen Skull Face. Die Wahrheit über seine Identität wird enthüllt...</p>
+</section>
+
+</main>
 
 <script>
-const gameData = {
-    "MG": { title: "Metal Gear (1987)", text: "Der Grundstein: Solid Snake, ein Neuling bei FOXHOUND, wird in die Söldner-Festung 'Outer Heaven' geschickt. Seine Mission ist es, den Metal Gear TX-55 zu zerstören. Das Spiel entpuppt sich als psychologisches Schachspiel, denn Snake erkennt, dass die Mission von Anfang an kompromittiert war. Sein eigener Mentor, Big Boss, nutzt Snake, um falsche Informationen zu verbreiten. Nach einem brutalen Kampf gegen den TX-55 stellt sich Snake dem Verräter. Outer Heaven versinkt in Flammen, doch der Geist der Söldner-Nation ist geboren." },
-    "MG2": { title: "MG2: Solid Snake (1990)", text: "Zanzibar Land: Die Welt steht kurz vor der Katastrophe durch eine Energiekrise. Snake kehrt zurück, um den entführten Dr. Marv zu retten. Er kämpft sich durch eine Welt aus Fallen und hochspezialisierten Söldnern. Hier wird die Geschichte tragisch: Snake erfährt, dass der Krieg für Big Boss nicht nur ein Mittel zum Zweck, sondern eine Lebenseinstellung ist. Der Kampf in Zanzibar Land ist ein Duell zweier Ideologien. Snake besiegt Big Boss ein zweites Mal, diesmal unter Einsatz eines improvisierten Flammenwerfers – ein Sieg, der ihn psychisch zeichnet." },
-    "MGS1": { title: "MGS1 (1998)", text: "Shadow Moses: Snake wird reaktiviert, um eine Terrorgruppe zu stoppen, die den Metal Gear REX kontrolliert. Dies ist das Kapitel, das alles änderte. Snake erfährt von 'Les Enfants Terribles', dem geheimen Projekt, bei dem er und Liquid Snake als Klone von Big Boss erschaffen wurden. In einer emotionalen Achterbahn trifft Snake auf den Gen-Soldaten Gray Fox, den schillernden Psycho Mantis und den Verräter Revolver Ocelot. Der Kampf gegen Liquid ist ein Kampf gegen das eigene Schicksal und die DNA, die Snake vorgibt, wer er zu sein hat." },
-    "MGS2": { title: "MGS2 (2001)", text: "Das postmoderne Meisterwerk: Raiden wird auf die 'Big Shell' geschickt. Das Spiel führt den Spieler in eine Welt der Desinformation ein. Man erfährt von den 'Patrioten', einer KI-Struktur, die seit Generationen die menschliche Geschichte durch Kontrolle der Medien und Memes formt. Raiden muss erkennen, dass seine gesamte Mission eine Rekonstruktion des Shadow-Moses-Vorfalls war – ein kontrolliertes Experiment, um zu sehen, ob man Soldaten wie Snake künstlich erschaffen kann. Es ist eine tiefgründige Analyse über das, was wir an die nächste Generation weitergeben." },
-    "MGS3": { title: "MGS3 (2004)", text: "Die Tragödie von 1964: Naked Snake wird tief in den sowjetischen Dschungel abgeworfen. Hier trifft er auf The Boss, die Mentorin, die ihn alles gelehrt hat. Der Verrat ist vollkommen, als sie zum Feind überläuft. Snake muss den Shagohod zerstören und seine eigene Lehrerin eliminieren. Er erkennt erst zu spät, dass sie eine Spionin war, die sich selbst opferte, um ihr Land zu retten. Der Verlust von The Boss zerstört Snake innerlich – aus Naked Snake wird der Mann, der die Welt in Brand setzen wird: Big Boss." },
-    "MGS4": { title: "MGS4 (2008)", text: "Das Ende der Ära: Die Welt wird von PMCs regiert, die Soldaten über das SOP-System miteinander vernetzen. Old Snake, dessen Körper vom schnellen Alterungsprozess gezeichnet ist, führt seinen letzten Feldzug. Er reist von den zerstörten Straßen des Mittleren Ostens bis zur einsamen Insel von Shadow Moses. Er muss die Kontrolle der KI-Patrioten endgültig brechen. Das Spiel endet nicht nur mit dem Sieg über Liquid Ocelot, sondern mit einem versöhnlichen, tragischen Abschied von der gesamten Metal-Gear-Legende." },
-    "MGS5": { title: "MGS V (2015)", text: "Der Abstieg in die Finsternis: Nach dem Untergang von MSF und dem Anschlag auf seine Basis erwacht Venom Snake. Er errichtet 'Diamond Dogs'. Das Spiel ist eine bittere Geschichte über den Verlust der Identität: Venom Snake erfährt am Ende, dass er nur ein Double des echten Big Boss ist, geschaffen als Ablenkung. Während Venom Snake den Kult um Big Boss aufbaut, bereitet der echte Big Boss im Hintergrund den Aufbau von Outer Heaven vor. Es ist die Geschichte eines Mannes, der alles opfert, um die Vision eines anderen zu erfüllen." }
-};
-
-const nav = document.getElementById('gameNav');
-Object.keys(gameData).forEach(key => {
-    const btn = document.createElement('button');
-    btn.innerText = gameData[key].title;
-    btn.onclick = () => {
-        document.getElementById('loreDisplay').innerHTML = `<h3>${gameData[key].title}</h3><p>${gameData[key].text}</p>`;
-    };
-    nav.appendChild(btn);
-});
-
-function toggleArchive() {
-    const m = document.getElementById('archiveModal');
-    m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+function scrollToId(id){
+ document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
-function toggleFullscreen(){ !document.fullscreenElement ? document.documentElement.requestFullscreen() : document.exitFullscreen(); }
+function playOpen(){
+ document.getElementById('openSound').play();
+}
 </script>
+
 </body>
 </html>
