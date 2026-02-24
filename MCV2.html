@@ -1,342 +1,570 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
-<title>MGS-Enzyklopädie – Die volle, ungekürzte Geschichte</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-html, body {
-    margin: 0; padding: 0; height: 100%;
-    font-family: 'Orbitron', sans-serif;
-    background: url("background.jpg") no-repeat center center fixed;
-    background-size: cover;
-    color: gold;
-}
-#backgroundOverlay{
-    position:fixed; inset:0;
-    background:rgba(0,0,0,0.85);
-    pointer-events:none;
-}
-#mainMenu{
-    position:fixed; top:0; width:100%;
-    background:rgba(0,0,0,0.85); padding:10px 20px;
-    display:flex; justify-content:space-between;
-    z-index:10;
-}
-#layout{
-    display:flex; height:100vh; margin-top:60px;
-}
-#sideMenu{
-    width:320px; background:rgba(0,0,0,0.9);
-    border-right:2px solid gold; overflow-y:auto;
-}
-#sideMenu button{
-    width:100%; background:black; border:1px solid gold;
-    color:gold; padding:12px; text-align:left; cursor:pointer;
-}
-#sideMenu button:hover{
-    background:gold; color:black;
-}
-#content{
-    flex:1; padding:30px; overflow-y:auto;
-}
-.gameSection{display:none;}
-.page{display:none;}
-.page.active{display:block;}
-.pageNav{
-    margin-top:20px; display:flex; gap:10px; align-items:center;
-}
-.pageNav button{
-    background:black; border:1px solid gold; color:gold;
-    padding:8px 14px; cursor:pointer;
-}
-.pageNav button:hover{
-    background:gold; color:black;
-}
-.pageCounter{
-    color:#aaa; font-size:0.9em; margin-left:auto;
-}
-h2{border-bottom:2px solid gold; padding-bottom:5px;}
-p{font-family:Arial; color:#ddd; line-height:1.85; margin:20px 0; font-size:1.05em;}
-</style>
+    <meta charset="UTF-8">
+    <title>MGS-Enzyklopädie</title>
+    <style>
+        /* ... dein bisheriges CSS ... */
+        #startBtn { position: fixed; bottom: 20px; right: 20px; z-index: 100; padding: 15px; background: gold; border: none; cursor: pointer; }
+    </style>
 </head>
 <body>
-<div id="backgroundOverlay"></div>
+    <button id="startBtn" onclick="initAudio()">System aktivieren</button>
+    <div id="backgroundOverlay"></div>
 
-<!-- HINTERGRUND-MUSIK – 50% Lautstärke, Dauer-Loop, Auto-Start -->
-<audio id="bgMusic" src="backgroundtheme.mp3" loop></audio>
+    <div id="mainMenu">
+        <div>METAL GEAR SOLID – Vollständige Enzyklopädie</div>
+        <button onclick="document.documentElement.requestFullscreen()">⛶ Vollbild</button>
+    </div>
 
-<audio id="openSound" src="open.mp3"></audio>
-<audio id="closeSound" src="close.mp3"></audio>
-
-<div id="mainMenu">
-    <div>METAL GEAR SOLID – Enzyklopädie • Die volle, ungekürzte Geschichte</div>
-    <button onclick="toggleFullscreen()">⛶ Vollbild</button>
+    <div id="layout">
+        <div id="sideMenu">
+            <button onclick="showSection('mgs4')">MGS4: Guns of the Patriots</button>
+            <button onclick="showSection('tpp')">MGSV: The Phantom Pain</button>
+        </div>
+        <div id="content">
+            <div id="mg1" class="gameSection">
+    <h2>Metal Gear (1987): Outer Heaven</h2>
+   
+    <div class="page active"><p>Seite 1: Im Jahr 1995 wird Solid Snake aus dem Ruhestand gerufen. Colonel Campbell gibt den Befehl: Infiltriere Outer Heaven. Ziel: Metal Gear zerstören.</p></div>
+    <div class="page"><p>Seite 2: Snake landet per HALO-Sprung. Die Dunkelheit verschlingt ihn. Er schleicht durch den Dschungel, die erste Wache nähert sich...</p></div>
+    <div class="page"><p>Seite 3: Die Außenmauer ist gefallen. Snake nutzt Lüftungsschächte. Er findet den ersten gefangenen Widerstandskämpfer, der vor dem 'TX-55' warnt.</p></div>
+    <div class="page"><p>Seite 4: Der erste Funkspruch von Big Boss: „Snake, vermeide den direkten Kampf.“ Snake spürt eine seltsame Kälte in der Stimme seines Mentors.</p></div>
+    <div class="page"><p>Seite 5: Snake erreicht das Gebäude 1. Er findet die Beretta. Ein Wachmann läuft in sein Sichtfeld – ein Schuss, er liegt. Snake bleibt lautlos.</p></div>
+    <div class="page"><p>Seite 6: Die Suche nach Gray Fox beginnt. Snake schleicht durch die Gefängnistrakte. Er befreit den ersten Geisel-Wissenschaftler.</p></div>
+    <div class="page"><p>Seite 7: Ein Alarm geht los. Snake springt in einen LKW – er wird in ein anderes Gebäude transportiert. Die Falle schnappt zu?</p></div>
+    <div class="page"><p>Seite 8: Snake entkommt dem LKW. Er findet Ausrüstung in einem Hinterhof. Ein Funkspruch von Gray Fox: „Snake, Metal Gear ist kein Panzer...“</p></div>
+    <div class="page"><p>Seite 9: Der Kampf gegen Shotmaker. Snake wirft Granaten. Die Explosion erhellt den dunklen Korridor. Er gewinnt die Oberhand.</p></div>
+    <div class="page"><p>Seite 10: Snake erreicht Zelle 101. Gray Fox ist schwer verletzt. Er flüstert: „Big Boss... er ist nicht der, der er vorgibt zu sein.“</p></div>
+    <div class="page"><p>Seite 11: Snake schleicht durch die Minenfelder. Ein Piepen – er friert ein. Entschärfung. Ein Fehler und er ist Geschichte.</p></div>
+    <div class="page"><p>Seite 12: Die Kommunikation mit Campbell wird gestört. Wer hört mit? Snake wechselt die Frequenz. Die Paranoia beginnt.</p></div>
+    <div class="page"><p>Seite 13: Gebäude 2 wird infiltriert. Snake findet eine Panzerfaust. Das ist der Moment, in dem die Stimmung kippt.</p></div>
+    <div class="page"><p>Seite 14: Snake trifft auf Machinegun Kid. Dauerfeuer peitscht gegen die Wand. Snake nutzt Deckung, zielt, feuert. Treffer.</p></div>
+    <div class="page"><p>Seite 15: Die Zentrale kommt in Sicht. Snake ist erschöpft. Er isst eine Ration – der Geschmack von Überleben.</p></div>
+    <div class="page"><p>Seite 16: Ein Hind-D-Helikopter greift an. Snake rennt. Die Raketen schlagen überall um ihn herum ein. Er schießt eine Rakete ab. Er brennt.</p></div>
+    <div class="page"><p>Seite 17: Snake betritt das Hauptlabor. Er sieht Metal Gear TX-55. Es ist kein Panzer – es ist eine Maschine der Apokalypse.</p></div>
+    <div class="page"><p>Seite 18: Er wird geschnappt. Die Wachen führen ihn ab. Er verliert seine Waffen. Er ist im Gefängnis. Alles aus?</p></div>
+    <div class="page"><p>Seite 19: Ein verstecktes Mikrofon. Fox hat ihm geholfen. Snake schlägt sich durch die Lüftung zurück in die Freiheit.</p></div>
+    <div class="page"><p>Seite 20: Big Boss ruft an: „Snake, hör auf. Kehr um!“ Snake weiß jetzt: Big Boss ist der Feind.</p></div>
+    <div class="page"><p>Seite 21: Snake bewaffnet sich neu. Er stürmt das Labor. Das Herz des Metal Gear liegt offen. Zeit für C4.</p></div>
+    <div class="page"><p>Seite 22: Die Sprengsätze sitzen. Die Anlage beginnt zu beben. Der Alarm ist ohrenbetäubend.</p></div>
+    <div class="page"><p>Seite 23: Gray Fox blockiert den Weg. Ein Kampf zwischen alter Freundschaft und Pflicht. Snake muss gewinnen.</p></div>
+    <div class="page"><p>Seite 24: Der Ninja fällt. „Snake... geh weiter.“ Er stirbt in Snakes Armen. Snake vergießt keine Träne, aber sein Herz bricht.</p></div>
+    <div class="page"><p>Seite 25: Das Dach von Outer Heaven. Der Wind weht hart. Big Boss wartet. Er hat keine Maske mehr auf.</p></div>
+    <div class="page"><p>Seite 26: „Outer Heaven wird die Welt beherrschen!“ Big Boss zieht seine Waffe. Ein Duell auf Leben und Tod.</p></div>
+    <div class="page"><p>Seite 27: Schüsse peitschen. Big Boss taumelt. Er blickt auf Snake mit einem letzten, fast stolzen Lächeln.</p></div>
+    <div class="page"><p>Seite 28: Die Explosionen verschlingen alles. Snake rennt zum Helikopter. Outer Heaven versinkt in einem Feuerball.</p></div>
+    <div class="page"><p>Seite 29: In der Luft blickt Snake zurück. Die Basis ist weg. Sein Mentor, sein Feind, sein Vorbild – alles zu Asche.</p></div>
+    <div class="page"><p>Seite 30: Snake kehrt heim. Die Welt weiß nichts. Aber er weiß es. Der Soldat hat gesiegt, doch der Frieden ist eine Lüge. Ende.</p></div>
+   
+    <div class="pageNav">
+        <button onclick="prev('mg1')">Zurück</button>
+        <button onclick="next('mg1')">Weiter</button>
+        <span class="pageCounter" id="counter-mg1">Seite 1 von 30</span>
+    </div>
 </div>
-
-<div id="layout">
-<div id="sideMenu">
-    <button onclick="toggleGame('mg1')">Metal Gear (1987)</button>
-    <button onclick="toggleGame('mg2')">Metal Gear 2</button>
-    <button onclick="toggleGame('mgs1')">Metal Gear Solid</button>
-    <button onclick="toggleGame('mgs2')">MGS2</button>
-    <button onclick="toggleGame('mgs3')">MGS3 / Delta</button>
-    <button onclick="toggleGame('pw')">Peace Walker</button>
-    <button onclick="toggleGame('gz')">Ground Zeroes</button>
-    <button onclick="toggleGame('tpp')">The Phantom Pain</button>
-    <button onclick="toggleGame('mgs4')">MGS4</button>
+        <div id="mg2" class="gameSection">
+    <h2>Metal Gear 2: Solid Snake (1990)</h2>
+   
+    <div class="page active"><p>Seite 1: Vier Jahre nach Outer Heaven: Die Welt leidet unter einer Energiekrise. Die Lösung: OILIX, entwickelt von Dr. Marv. Zanzibar Land entführt ihn.</p></div>
+    <div class="page"><p>Seite 2: Snake kehrt zurück. Campbell ist wieder am Hörer. Zanzibar Land – eine neue Söldnernation. Schnee, Kälte, die Mission beginnt.</p></div>
+    <div class="page"><p>Seite 3: Infiltration der Festung. Snake nutzt Tarnung und Codec. Die Wachen sind aufmerksam. Jedes Geräusch könnte das letzte sein.</p></div>
+    <div class="page"><p>Seite 4: Treffen mit Holly White. Eine Journalistin, die mehr weiß, als sie zugibt. Sie liefert die ersten kritischen Intel-Daten.</p></div>
+    <div class="page"><p>Seite 5: Das Gerücht bewahrheitet sich: Big Boss lebt. Zanzibar Land ist sein neues Paradies für Soldaten. Snake ist geschockt.</p></div>
+    <div class="page"><p>Seite 6: Infiltration der unteren Ebenen. Ein Labyrinth aus Gängen und Fallen. Snake muss vorsichtig sein. Laser-Gitter überall.</p></div>
+    <div class="page"><p>Seite 7: Dr. Kio Marv gefunden! Aber er ist gefangen. Snake muss ihn befreien. Er plant den Ausbruch durch das Lüftungssystem.</p></div>
+    <div class="page"><p>Seite 8: Gray Fox taucht auf. Ein Schatten aus der Vergangenheit. Der Cyborg-Ninja ist schneller als je zuvor. Das erste Duell beginnt.</p></div>
+    <div class="page"><p>Seite 9: Fox ist gnadenlos. Snake muss seinen alten Freund bekämpfen. Ein Messerduell im Schnee. Die Emotionen kochen hoch.</p></div>
+    <div class="page"><p>Seite 10: Fox entkommt, doch Snake hat Informationen über das OILIX-Projekt. Die Welt braucht dieses Öl, um zu überleben.</p></div>
+    <div class="page"><p>Seite 11: Snake schleicht durch das Lagerhaus. Running Man wartet. Er ist so schnell, dass Snake kaum zielen kann.</p></div>
+    <div class="page"><p>Seite 12: Running Man besiegt. Der Weg zum Forschungszentrum ist frei. Snake spürt, dass die Basis nur eine riesige Falle ist.</p></div>
+    <div class="page"><p>Seite 13: Dr. Marv ist unter Bewachung. Snake setzt Minen und Rauchgranaten ein. Er muss lautlos bleiben.</p></div>
+    <div class="page"><p>Seite 14: Ein Funkspruch von Big Boss: „Snake, du verstehst nicht, worum es geht. Soldaten gehören nicht in die Gesellschaft.“</p></div>
+    <div class="page"><p>Seite 15: Snake antwortet nicht. Er konzentriert sich auf die Rettung. Er erreicht Marvs Zelle. Der Dr. ist am Ende seiner Kräfte.</p></div>
+    <div class="page"><p>Seite 16: Ein weiterer Boss: Black Ninja. Snake erkennt ihn: Es ist Kyle Schneider aus Outer Heaven. Die Tragödie setzt sich fort.</p></div>
+    <div class="page"><p>Seite 17: Black Ninja besiegt. Snake erfährt von den geheimen Plänen der Söldner. Sie planen den totalen Krieg.</p></div>
+    <div class="page"><p>Seite 18: Snake findet Metal Gear D. Ein beeindruckendes Konstrukt. Er muss es sabotieren, bevor es eingesetzt wird.</p></div>
+    <div class="page"><p>Seite 19: Snake legt C4. Eine Wache bemerkt ihn. Ein kurzer Schusswechsel. Er schlüpft in den Schacht.</p></div>
+    <div class="page"><p>Seite 20: Die Festung wird abgeriegelt. Snake muss sich durch ein Minenfeld im Schnee kämpfen. Nur noch Schatten und Stille.</p></div>
+    <div class="page"><p>Seite 21: Holly unterstützt ihn per Funk. Sie ist in Schwierigkeiten. Snake muss entscheiden: Ziel oder Verbündete?</p></div>
+    <div class="page"><p>Seite 22: Er wählt beides. Snake rettet Holly. Gemeinsam stehlen sie die OILIX-Diskette. Ein wichtiger Sieg.</p></div>
+    <div class="page"><p>Seite 23: Die Flucht vor dem Hind-D. Snake schießt mit einer Stinger-Rakete. Der Hubschrauber stürzt ab. Er ist sicher.</p></div>
+    <div class="page"><p>Seite 24: Der finale Weg zum Thronsaal. Alles ist still. Eine unheimliche Ruhe liegt über Zanzibar Land.</p></div>
+    <div class="page"><p>Seite 25: Big Boss wartet im Zentrum. Sein Gesicht ist vernarbt. Er sieht aus wie ein Geist. Snake ist bereit.</p></div>
+    <div class="page"><p>Seite 26: „Der Krieg ist das einzige Zuhause für einen Soldaten“, sagt Big Boss. Snake widerspricht: „Ich bin kein Soldat mehr.“</p></div>
+    <div class="page"><p>Seite 27: Der letzte Kampf gegen Metal Gear D. Snake nutzt ein Feuerzeug und Deo-Spray als improvisierten Flammenwerfer.</p></div>
+    <div class="page"><p>Seite 28: Die Maschine brennt. Big Boss ist entwaffnet. Snake nimmt sein Messer. Das Ende der Legende.</p></div>
+    <div class="page"><p>Seite 29: Big Boss sinkt zu Boden. Er blickt Snake an. „Du bist der wahre Nachfolger...“, flüstert er und stirbt.</p></div>
+    <div class="page"><p>Seite 30: Die Basis explodiert in einer riesigen Kettenreaktion. Snake rennt zum Ausgang. Der Schnee wird rot gefärbt.</p></div>
+    <div class="page"><p>Seite 31: Snake und Holly fliegen davon. Zanzibar Land brennt im Hintergrund. Die Welt wird OILIX erhalten.</p></div>
+    <div class="page"><p>Seite 32: Campbell gratuliert. „Mission beendet, Snake.“ Snake antwortet nicht. Er blickt auf die Diskette.</p></div>
+    <div class="page"><p>Seite 33: Er ist zurück in der USA. Aber er findet keinen Frieden. Die Bilder von Big Boss und Fox verfolgen ihn.</p></div>
+    <div class="page"><p>Seite 34: Snake zieht sich in die Wildnis zurück. Er weiß: Es war nicht der letzte Kampf. Patriots sind überall.</p></div>
+    <div class="page"><p>Seite 35: Snake starrt in den Sonnenuntergang. Der Soldat ist müde, aber wachsam. Das Kapitel Zanzibar Land ist geschlossen.</p></div>
+   
+    <div class="pageNav">
+        <button onclick="prev('mg2')">Zurück</button>
+        <button onclick="next('mg2')">Weiter</button>
+        <span class="pageCounter" id="counter-mg2">Seite 1 von 35</span>
+    </div>
 </div>
-
-<div id="content">
-
-<!-- ================= METAL GEAR (1987) – 30 volle Seiten ================= -->
-<div id="mg1" class="gameSection">
-<h2>Metal Gear (1987)</h2>
-<div class="page active"><p>Seite 1 – Im Jahr 1995 wird Solid Snake, der legendäre FOXHOUND-Agent, aus seinem selbstgewählten Ruhestand gerissen. Colonel Campbell kontaktiert ihn über Codec und erklärt die Krise: In einer abgelegenen Region Südafrikas hat sich die Söldnernation Outer Heaven etabliert. Diese private Armee besitzt eine Superwaffe, die die globale Balance bedroht – Metal Gear TX-55, ein zweibeiniger nuklearer Kampfpanzer. Snake wird mit Fallschirm über dem Dschungel abgesetzt. Der Wind rauscht in seinen Ohren, während er sich abrollt und sofort in Deckung geht. Mit nur einer Beretta, wenigen Rationen und seinem Codec-Gerät beginnt die Infiltration. „Snake, deine Mission ist klar: Finde und zerstöre Metal Gear“, hallt Campbells Stimme in seinem Ohr. Die Nacht ist dunkel, die Wachen patrouillieren mit Scheinwerfern, und Snake schleicht sich lautlos durch das hohe Gras – die Legende beginnt.</p></div>
-<div class="page"><p>Seite 2 – Snake erreicht die erste Außenmauer von Outer Heaven. Er nutzt die Dunkelheit, kriecht unter Stacheldraht hindurch und klettert über Zäune. Plötzlich hört er Schritte – ein Wachmann kommt näher. Snake hält den Atem an, drückt sich flach auf den Boden. Der Mann geht vorbei, ohne ihn zu bemerken. Im Inneren der Basis findet Snake Lüftungsschächte, die ihm Zugang zu den unterirdischen Anlagen gewähren. Er befreit den ersten gefangenen Soldaten, der ihm von den geheimen Labors erzählt. Die Spannung steigt, als Snake merkt, dass die Wachen hochtrainiert sind. Er schleicht weiter, vermeidet direkte Konfrontationen und sammelt Munition von besiegten Gegnern. Die Atmosphäre ist beklemmend – Outer Heaven fühlt sich wie eine uneinnehmbare Festung an.</p></div>
-<div class="page"><p>Seite 3 – Snake dringt tiefer in die Basis vor. Er kämpft gegen Elite-Einheiten wie Shotmaker und Machinegun Kid. Die Kugeln fliegen, doch Snake nutzt seine Stealth-Fähigkeiten, um sie auszuschalten. In einem der Räume trifft er auf den gefangenen Gray Fox, der ihm wichtige Informationen über Metal Gear gibt. Fox warnt ihn vor der wahren Macht der Basis. Snake setzt seinen Weg fort, sabotiert Kommunikationssysteme und befreit weitere Geiseln. Die Funkgespräche mit Campbell werden immer dringlicher. „Snake, sei vorsichtig – Big Boss persönlich gibt dir Anweisungen, aber etwas stimmt nicht.“ Die Zweifel wachsen, während Snake durch Korridore und Lüftungsschächte kriecht und die erste Konfrontation mit einem Hind-D-Helikopter überlebt.</p></div>
-<div class="page"><p>Seite 4 – Die Enthüllung naht. Snake erreicht die zentrale Lagerhalle und sieht zum ersten Mal die Silhouette von Metal Gear TX-55. Die Maschine ist gigantisch, ein wahres Monstrum aus Stahl und Raketen. Bevor er sie zerstören kann, wird er gefangen genommen und vor Big Boss gebracht. Der Kommandant von Outer Heaven enthüllt seine wahre Identität: Big Boss, der legendäre Soldat, den Snake verehrte. „Du bist nur ein Werkzeug“, sagt Big Boss kalt. Snake wird gefoltert, doch er entkommt mit Hilfe eines versteckten Funksenders. Die Wahrheit ist schockierend – Outer Heaven ist Big Boss’ eigene Schöpfung, ein Ort, an dem Soldaten frei von Regierungen kämpfen sollen, aber um den Preis der Weltherrschaft.</p></div>
-<div class="page"><p>Seite 5 – Snake kämpft sich zurück zur Metal-Gear-Halle. Er sabotiert die Reaktoren und löst eine Kettenreaktion aus. Die Basis beginnt zu beben. Gray Fox, nun als Cyborg-Ninja modifiziert, stellt sich ihm in den Weg. Ein emotionaler Kampf entbrennt – Fox, der einst Snakes Freund war, ist nun ein Werkzeug des Wahnsinns. Snake besiegt ihn in einem brutalen Duell und dringt weiter vor. Die Explosionen werden lauter, die Wachen panisch. Big Boss selbst erscheint auf dem Dach für den finalen Showdown. „Du bist der wahre Soldat, Snake – aber der Krieg wird nie enden“, sind seine letzten Worte, bevor die Basis in Flammen aufgeht.</p></div>
-<div class="page"><p>Seite 6 – Snake entkommt knapp mit dem Helikopter. Die Explosion von Outer Heaven ist gewaltig, ein Feuerball am Nachthimmel. Zurück in Amerika wird er als Held gefeiert, doch innerlich ist er gebrochen. Die Wahrheit über Big Boss und Outer Heaven lastet schwer auf ihm. Campbell gratuliert ihm, doch Snake spürt, dass dies nur der Anfang eines viel größeren Krieges ist. Die Philosophers’ Legacy, das geheime Vermögen, das Kriege finanziert, wird erwähnt. Snake legt die Uniform ab, doch der Kodex des Soldaten brennt weiter in ihm. Die Legende von Solid Snake ist geboren – und der Schatten von Big Boss bleibt.</p></div>
-<div class="page"><p>Seite 7 – Die Nachwirkungen der Mission zeigen sich. Snake zieht sich zurück, doch Träume von Metal Gear und Big Boss plagen ihn. Die Welt feiert den Sieg, doch im Untergrund formieren sich neue Bedrohungen. Die Patriots und Zero beobachten alles aus dem Schatten. Snake ahnt, dass Les Enfants Terribles, das Klon-Projekt, bereits läuft. Die Saat des ewigen Krieges ist gesät. Die Menschheit als Waffe – das ist das Vermächtnis, das Big Boss hinterlassen hat. Snake schwört sich, nie wieder in den Krieg zu ziehen… bis der nächste Ruf kommt.</p></div>
-<div class="page"><p>Seite 8 – Monate später sitzt Snake allein in seiner Hütte. Er denkt an die gefallenen Kameraden, an Gray Fox’ Schreie und an Big Boss’ letzte Worte. Der Zyklus hat begonnen. Die globale Kriegsökonomie nimmt Form an. Snake weiß, dass Metal Gear nicht wirklich zerstört ist – es wird wiedergeboren werden. Die Legende von Outer Heaven lebt weiter, und Solid Snake wird wieder gebraucht werden. Die Geschichte des Metal Gear ist noch lange nicht zu Ende.</p></div>
-<div class="page"><p>Seite 9 – Snake kehrt in den Ruhestand zurück, doch die Narben bleiben. Er trainiert weiter, hält sich bereit. Die Welt verändert sich, neue Konflikte entstehen. Die Philosophers spalten sich, die Patriots entstehen. Snake spürt die unsichtbaren Fäden. Der Mann, der Big Boss besiegte, wird zur ultimativen Legende – und zum Ziel zukünftiger Feinde.</p></div>
-<div class="page"><p>Seite 10 – Die letzten Tage in Outer Heaven flackern in Snakes Erinnerung auf. Die Explosion, der Rauch, der Geruch von verbranntem Metall. Er weiß, dass er den ersten Stein des großen Zyklus gelegt hat. Big Boss lebt – irgendwo. Der wahre Krieg hat gerade erst begonnen.</p></div>
-<div class="page"><p>Seite 11 – Snake packt seine Sachen. Ein letzter Blick auf das brennende Outer Heaven in seinen Gedanken. Er steigt in den Helikopter und fliegt davon. Die Mission ist erfüllt, doch der Preis war hoch. Die Welt ist gerettet – für den Moment.</p></div>
-<div class="page"><p>Seite 12 – Zurück in der Zivilisation versucht Snake, ein normales Leben zu führen. Doch der Soldat in ihm schläft nie. Jede Sirene, jedes Flugzeuggeräusch erinnert ihn an die Basis. Die Legende wächst in Geheimberichten.</p></div>
-<div class="page"><p>Seite 13 – Jahre später wird Snake wieder kontaktiert. Die Geschichte von Outer Heaven wird zur Grundlage für alle folgenden Metal-Gear-Konflikte. Er ist der Mann, der den ersten Metal Gear zerstörte – und der Beginn von allem.</p></div>
-<div class="page"><p>Seite 14 – Snake sitzt am Lagerfeuer und denkt an The Boss’ Vermächtnis, das er noch nicht kennt. Die Saat ist gelegt. Der ewige Krieg wartet.</p></div>
-<div class="page"><p>Seite 15 – Die FOXHOUND-Einheit wird neu formiert. Snake wird zur Ikone. Big Boss’ Name wird zur verbotenen Legende.</p></div>
-<div class="page"><p>Seite 16 – Snake weiß, dass Metal Gear wieder auftauchen wird. Die Technologie ist zu mächtig, um verloren zu gehen.</p></div>
-<div class="page"><p>Seite 17 – Die Welt verändert sich. Kriege werden privatisiert. Outer Heaven war nur der Prototyp.</p></div>
-<div class="page"><p>Seite 18 – Snake bereitet sich mental auf die Zukunft vor. Der Soldat wird nie wirklich frei sein.</p></div>
-<div class="page"><p>Seite 19 – Die Geburt der Legende Solid Snake ist vollendet. Der Mann, der den Krieg veränderte.</p></div>
-<div class="page"><p>Seite 20 – „Kept you waiting, huh?“ – Die Worte hallen nach. Der Zyklus dreht sich weiter. Metal Gear wird zurückkehren.</p></div>
-<div class="page"><p>Seite 21 – Snake verlässt die Basis endgültig. Die Explosion ist das letzte Bild in seinem Kopf. Er weiß, dass der Frieden nur vorübergehend ist.</p></div>
-<div class="page"><p>Seite 22 – Die Regierung feiert ihn, doch Snake spürt die Lüge. Big Boss war nicht der einzige Verräter.</p></div>
-<div class="page"><p>Seite 23 – Die Philosophers’ Legacy wird zum zentralen Thema zukünftiger Missionen. Snake ahnt es bereits.</p></div>
-<div class="page"><p>Seite 24 – Gray Fox’ letzter Schrei verfolgt ihn. Der Cyborg-Ninja wird in späteren Spielen zurückkehren.</p></div>
-<div class="page"><p>Seite 25 – Snake legt die Waffe nieder – vorerst. Der Soldat ruht, doch der Krieg schläft nie.</p></div>
-<div class="page"><p>Seite 26 – Die Welt atmet auf, doch die Schatten der Patriots wachsen.</p></div>
-<div class="page"><p>Seite 27 – Snake wird zur Symbolfigur des Widerstands gegen Metal Gear.</p></div>
-<div class="page"><p>Seite 28 – Die Legende wird in Akten verewigt. Solid Snake ist unsterblich.</p></div>
-<div class="page"><p>Seite 29 – Der Fall von Outer Heaven markiert den Start der gesamten Saga.</p></div>
-<div class="page"><p>Seite 30 – „The world will need heroes…“ – und Solid Snake ist der erste. Der Kreis beginnt sich zu schließen, doch die Geschichte geht weiter.</p></div>
-<div class="pageNav">
-    <button onclick="prevPage('mg1')">◀</button>
-    <button onclick="nextPage('mg1')">▶</button>
-    <span class="pageCounter" id="counter-mg1">Seite 1 von 30</span>
+        <div id="mgs1" class="gameSection">
+    <h2>MGS1: Shadow Moses (1998)</h2>
+   
+    <div class="page active"><p>Seite 1: 2005. Shadow Moses Island. Snake wird von Roy Campbell reaktiviert, um FOXHOUND zu stoppen.</p></div>
+    <div class="page"><p>Seite 2: Der HALO-Sprung in die eisige Nacht. Snake landet beim Dock und infiltriert die Basis.</p></div>
+    <div class="page"><p>Seite 3: Snake schleicht durch den Hangar. Erste Begegnung mit dem Cyborg-Ninja.</p></div>
+    <div class="page"><p>Seite 4: Liquid Snakes Stimme im Codec. Er fordert die Überreste von Big Boss.</p></div>
+    <div class="page"><p>Seite 5: Snake trifft Meryl im Hangar. Sie sind nun ein Team gegen die Terroristen.</p></div>
+    <div class="page"><p>Seite 6: Infiltration der Lagerhallen. Die Kälte Alaskas wird zur tödlichen Falle.</p></div>
+    <div class="page"><p>Seite 7: Ocelot verhört den ArmsTech-Präsidenten. Snake greift ein und Ocelot flieht.</p></div>
+    <div class="page"><p>Seite 8: Ocelot-Duell: Ein Kampf um den PAL-Code. Ein falscher Schritt und alles explodiert.</p></div>
+    <div class="page"><p>Seite 9: Der Cyborg-Ninja taucht wieder auf. Er schneidet Ocelot die Hand ab.</p></div>
+    <div class="page"><p>Seite 10: Snake erreicht den Tank-Hangar. Metal Gear REX ist hier verborgen.</p></div>
+    <div class="page"><p>Seite 11: Treffen mit Otacon. Er ist kein Terrorist, sondern ein genialer Programmierer.</p></div>
+    <div class="page"><p>Seite 12: Otacon zeigt Snake die Stealth-Camo. Ein wertvolles Werkzeug für die Mission.</p></div>
+    <div class="page"><p>Seite 13: Der Weg zum Kommunikations-Turm. Überall Kameras und Fallen.</p></div>
+    <div class="page"><p>Seite 14: Snake wird in eine Falle gelockt. Die Aufzüge sind blockiert.</p></div>
+    <div class="page"><p>Seite 15: Die Schneefelder. Sniper Wolf lauert. Ein Schuss trifft Meryl schwer.</p></div>
+    <div class="page"><p>Seite 16: Snake muss Sniper Wolf finden. Der Scharfschützen-Kampf beginnt.</p></div>
+    <div class="page"><p>Seite 17: Meryl wird gefangen genommen. Snake muss sie befreien.</p></div>
+    <div class="page"><p>Seite 18: Snake wird gefangen. Er landet im Folterraum.</p></div>
+    <div class="page"><p>Seite 19: Ocelots Folter. Snake muss entscheiden: Widerstehen oder aufgeben.</p></div>
+    <div class="page"><p>Seite 20: Der Ausbruch aus dem Gefängnis. Snake nutzt Müll zur Ablenkung.</p></div>
+    <div class="page"><p>Seite 21: Kampf gegen den Ninja im Labor. Seine Schnelligkeit ist fast übermenschlich.</p></div>
+    <div class="page"><p>Seite 22: Die Maske des Ninja fällt – es ist Gray Fox.</p></div>
+    <div class="page"><p>Seite 23: Snake erfährt von Naomi und dem FOXDIE-Virus.</p></div>
+    <div class="page"><p>Seite 24: Der Weg zum zweiten Turm. Der Fahrstuhl ist ein Schlachtfeld.</p></div>
+    <div class="page"><p>Seite 25: Liquid greift mit dem Hind-D an. Snake nutzt die Stinger-Raketen.</p></div>
+    <div class="page"><p>Seite 26: Der Hind-D stürzt ab. Liquid überlebt den Absturz.</p></div>
+    <div class="page"><p>Seite 27: Die Eishöhle. Sniper Wolf wartet auf den letzten Tanz.</p></div>
+    <div class="page"><p>Seite 28: Sniper Wolfs Ende. Sie erzählt Snake von ihrer Kindheit als Soldatin.</p></div>
+    <div class="page"><p>Seite 29: Snake verabschiedet sich von ihr. Ein trauriger Moment auf Shadow Moses.</p></div>
+    <div class="page"><p>Seite 30: Der Weg zum REX-Hangar. Psycho Mantis tritt in den Weg.</p></div>
+    <div class="page"><p>Seite 31: Psychologische Kriegsführung. Mantis liest Snakes Gedanken.</p></div>
+    <div class="page"><p>Seite 32: Mantis ist besiegt. Snake erfährt von seinem genetischen Erbe.</p></div>
+    <div class="page"><p>Seite 33: REX Hangar – Die finale Konfrontation mit Liquid beginnt.</p></div>
+    <div class="page"><p>Seite 34: Die Enthüllung von 'Les Enfants Terribles'. Snake ist ein Klon von Big Boss.</p></div>
+    <div class="page"><p>Seite 35: Metal Gear REX erwacht. Ein Monstrum aus Stahl und Atombomben.</p></div>
+    <div class="page"><p>Seite 36: Gray Fox opfert sich gegen REX. Sein letzter heldenhafter Moment.</p></div>
+    <div class="page"><p>Seite 37: REX knickt ein. Die Panzerung bricht unter den Stinger-Treffern.</p></div>
+    <div class="page"><p>Seite 38: Liquid springt aus dem REX. Er ist unzerstörbar und voller Hass.</p></div>
+    <div class="page"><p>Seite 39: Das letzte Duell auf dem Dach des REX. Ein Kampf ohne Waffen.</p></div>
+    <div class="page"><p>Seite 40: Liquid verliert das Gleichgewicht. Er fällt in die Tiefe.</p></div>
+    <div class="page"><p>Seite 41: Snake und Meryl flüchten mit dem Jeep durch den Tunnel.</p></div>
+    <div class="page"><p>Seite 42: Liquid taucht noch einmal im Jeep auf. Die Verfolgungsjagd beginnt.</p></div>
+    <div class="page"><p>Seite 43: Liquid stirbt durch FOXDIE. Sein Körper altert in Sekunden.</p></div>
+    <div class="page"><p>Seite 44: Snake erkennt: Er hat nur noch begrenzte Zeit durch das Virus.</p></div>
+    <div class="page"><p>Seite 45: Der Sonnenaufgang über Alaska. Snake lässt Shadow Moses hinter sich.</p></div>
+    <div class="pageNav">
+        <button onclick="prev('mgs1')">Zurück</button>
+        <button onclick="next('mgs1')">Weiter</button>
+        <span class="pageCounter" id="counter-mgs1">Seite 1 von 45</span>
+    </div>
 </div>
+        <div id="mgs2" class="gameSection">
+    <h2>MGS2: Sons of Liberty (2001)</h2>
+   
+    <div class="page active"><p>Seite 1: Tanker-Vorfall: Snake infiltriert die Discovery, um Beweise über Metal Gear RAY zu sammeln.</p></div>
+    <div class="page"><p>Seite 2: Ocelot verrät alle. Er stiehlt RAY und lässt den Tanker sinken. Snake gilt als tot.</p></div>
+    <div class="page"><p>Seite 3: Zwei Jahre später: Die Big Shell Anlage. Raiden, ein neuer FOXHOUND-Agent, beginnt seine Mission.</p></div>
+    <div class="page"><p>Seite 4: Raiden trifft auf den „Navy SEAL“ Pliskin. Er ahnt nicht, wer sich hinter der Maske verbirgt.</p></div>
+    <div class="page"><p>Seite 5: Die Terroristen („Sons of Liberty“) halten den US-Präsidenten als Geisel.</p></div>
+    <div class="page"><p>Seite 6: Dead Cell – Die Elite-Einheit der Terroristen. Vamp taucht auf dem Wasser auf.</p></div>
+    <div class="page"><p>Seite 7: Raiden befreit Peter Stillman. Eine Bombe tickt in der Anlage.</p></div>
+    <div class="page"><p>Seite 8: Die Wahrheit über Fortune. Sie ist die „Lady Luck“ – keine Kugel trifft sie.</p></div>
+    <div class="page"><p>Seite 9: Fatman stellt Raiden. Ein explosives Duell auf den Dächern.</p></div>
+    <div class="page"><p>Seite 10: Fatman besiegt, doch das Bomben-Netzwerk ist aktiv.</p></div>
+    <div class="page"><p>Seite 11: Raiden trifft auf den mysteriösen Ninja „Mr. X“. Es ist Olga Gurlukovich.</p></div>
+    <div class="page"><p>Seite 12: Raiden erfährt, dass Rose, seine Freundin, nur seine Informationen filtert.</p></div>
+    <div class="page"><p>Seite 13: Pliskin offenbart seine wahre Identität: Er ist Solid Snake.</p></div>
+    <div class="page"><p>Seite 14: Die „Arsenal Gear“-Enthüllung. Die gesamte Big Shell ist nur eine Tarnung.</p></div>
+    <div class="page"><p>Seite 15: Vamp ist ein unmöglicher Gegner. Raiden nutzt seine Stinger-Raketen.</p></div>
+    <div class="page"><p>Seite 16: Raiden wird gefangen. Solidus Snake tritt ins Licht.</p></div>
+    <div class="page"><p>Seite 17: Die Folter beginnt. Solidus erklärt seine Vision der Freiheit.</p></div>
+    <div class="page"><p>Seite 18: Raiden erinnert sich an seine Vergangenheit als Kindersoldat in Liberia.</p></div>
+    <div class="page"><p>Seite 19: Snake befreit Raiden. Sie kämpfen sich gemeinsam durch das Arsenal.</p></div>
+    <div class="page"><p>Seite 20: Der Colonel im Codec spielt verrückt. Er ist keine echte Person mehr.</p></div>
+    <div class="page"><p>Seite 21: Rose wird zur KI-Projektion. Das „S3-Protokoll“ wird erklärt.</p></div>
+    <div class="page"><p>Seite 22: Raiden erkennt: Alles war ein kontrolliertes Experiment.</p></div>
+    <div class="page"><p>Seite 23: Die „Patrioten“ – eine KI, die die menschliche Geschichte kontrolliert.</p></div>
+    <div class="page"><p>Seite 24: Arsenal Gear beginnt zu rasen. Es steuert direkt auf Manhattan zu.</p></div>
+    <div class="page"><p>Seite 25: Raiden kämpft sich durch eine Armee von Metal Gear RAYs.</p></div>
+    <div class="page"><p>Seite 26: Er ist am Ende seiner Kräfte. Die RAYs sind zu viele.</p></div>
+    <div class="page"><p>Seite 27: Solid Snake rettet Raiden erneut. Ein ungleicher Kampf.</p></div>
+    <div class="page"><p>Seite 28: Fortune stellt sich den RAYs entgegen – ihre Kräfte funktionieren nicht mehr.</p></div>
+    <div class="page"><p>Seite 29: Ocelot übernimmt die Kontrolle über RAY. Er ist ein Agent der Patrioten.</p></div>
+    <div class="page"><p>Seite 30: Solidus will die Kontrolle über die KI. Er will das System vernichten.</p></div>
+    <div class="page"><p>Seite 31: Arsenal Gear rammt die Federal Hall in New York.</p></div>
+    <div class="page"><p>Seite 32: Raiden und Solidus landen auf dem Dach der Federal Hall.</p></div>
+    <div class="page"><p>Seite 33: Ein Duell mit Hochfrequenz-Schwertern im strömenden Regen.</p></div>
+    <div class="page"><p>Seite 34: Raiden gegen seinen ehemaligen Mentor Solidus.</p></div>
+    <div class="page"><p>Seite 35: Solidus spricht über sein Ziel, ein freies Amerika zu schaffen.</p></div>
+    <div class="page"><p>Seite 36: Raiden besiegt Solidus. Er ist kein „Phantom“ mehr.</p></div>
+    <div class="page"><p>Seite 37: Solidus stirbt. Sein Körper stürzt in die Tiefe.</p></div>
+    <div class="page"><p>Seite 38: Snake und Raiden stehen auf dem Dach. Die Patrioten gewinnen.</p></div>
+    <div class="page"><p>Seite 39: Snake erklärt: „Wir müssen weitermachen.“</p></div>
+    <div class="page"><p>Seite 40: Die Namen der 12 Patrioten werden enthüllt – alle sind längst tot.</p></div>
+    <div class="page"><p>Seite 41: Raiden findet Rose. Sie ist schwanger – oder ist sie es?</p></div>
+    <div class="page"><p>Seite 42: Snake macht sich auf die Suche nach Ocelot. Er muss die Patrioten finden.</p></div>
+    <div class="page"><p>Seite 43: Raiden lässt die Vergangenheit hinter sich. Er beginnt ein neues Leben.</p></div>
+    <div class="page"><p>Seite 44: Die Welt hat sich verändert. Informationen sind nun eine Waffe.</p></div>
+    <div class="page"><p>Seite 45: Snake und Raiden trennen sich. Jeder geht seinen Weg.</p></div>
+    <div class="page"><p>Seite 46: Rose und Raiden finden zueinander. Ein Moment der Hoffnung.</p></div>
+    <div class="page"><p>Seite 47: Snake weiß: Der Kampf gegen das System hat erst begonnen.</p></div>
+    <div class="page"><p>Seite 48: Die Welt wird von Daten und Memes kontrolliert.</p></div>
+    <div class="page"><p>Seite 49: Raiden schaut in den Himmel über New York.</p></div>
+    <div class="page"><p>Seite 50: MGS2 endet. Der Sohn der Freiheit ist nun er selbst.</p></div>
+    <div class="pageNav">
+        <button onclick="prev('mgs2')">Zurück</button>
+        <button onclick="next('mgs2')">Weiter</button>
+        <span class="pageCounter" id="counter-mgs2">Seite 1 von 50</span>
+    </div>
 </div>
-
-<!-- ================= METAL GEAR 2 (1990) – 35 volle Seiten ================= -->
-<div id="mg2" class="gameSection">
-<h2>Metal Gear 2: Solid Snake (1990)</h2>
-<div class="page active"><p>Seite 1 – Vier Jahre nach Outer Heaven: Die Welt leidet unter einer neuen Ölkrise. Zanzibar Land, eine weitere Söldnernation, erhebt sich und droht mit OILIX, einer Algen-basierten Ölquelle, die die globale Wirtschaft revolutionieren könnte. Solid Snake wird aus dem Ruhestand geholt. Colonel Campbell kontaktiert ihn erneut: „Snake, Dr. Kio Marv und die OILIX-Formel müssen gerettet werden.“ Snake infiltriert die eisige Festung von Zanzibar Land. Der Schnee knirscht unter seinen Stiefeln, der Wind heult. Die Infiltration beginnt von Neuem – doch diesmal ist Big Boss zurück, und der Verrat noch tiefer.</p></div>
-<div class="page"><p>Seite 2 – Snake trifft auf Holly White, die Undercover-Journalistin, die ihm entscheidende Hinweise gibt. Gemeinsam navigieren sie durch die Basis, vermeiden Patrouillen und sabotieren Verteidigungsanlagen. Gray Fox kehrt als Cyborg-Ninja zurück – ein letztes, herzzerreißendes Duell unter dem Metallgerüst. Snake besiegt seinen alten Freund, doch der Preis ist hoch. Die Wahrheit über Big Boss wird langsam enthüllt: Er lebt und führt Zanzibar Land an.</p></div>
-<div class="page"><p>Seite 3 – Snake dringt tiefer in die Festung vor und findet Dr. Kio Marv in einem geheimen Labor. Die OILIX-Formel ist der Schlüssel zur Zukunft der Energie. Big Boss’ Plan wird klar: Er will die Welt mit der Kontrolle über das Öl erpressen. Snake sabotiert die Ölraffinerien und entkommt knapp einer Explosion.</p></div>
-<div class="page"><p>Seite 4 – Holly White enthüllt ihre wahre Identität als Agentin. Sie und Snake arbeiten zusammen, um die Wahrheit über die Philosophers’ Legacy zu finden. Gray Fox kämpft erneut gegen Snake – diesmal ist der Kampf persönlicher denn je.</p></div>
-<div class="page"><p>Seite 5 – Metal Gear D erwacht in seiner vollen Größe. Snake muss die Maschine zerstören, bevor sie die Welt bedroht. Die Kämpfe werden härter, die moralischen Konflikte größer.</p></div>
-<div class="page"><p>Seite 6 – Big Boss konfrontiert Snake persönlich. „Du bist mein Sohn… und mein größter Feind.“ Die Worte hallen nach. Snake muss sich entscheiden, ob er seinen Mentor wirklich töten kann.</p></div>
-<div class="page"><p>Seite 7 – Die Basis von Zanzibar Land brennt. Snake und Holly entkommen mit der OILIX-Formel. Big Boss stirbt in den Flammen – oder so scheint es.</p></div>
-<div class="page"><p>Seite 8 – Zurück in der Zivilisation wird Snake wieder als Held gefeiert. Doch er weiß, dass der Krieg nie endet. Die Patriots beobachten ihn bereits.</p></div>
-<div class="page"><p>Seite 9 – Snake zieht sich erneut zurück, doch die Erinnerungen an Big Boss und Gray Fox lassen ihn nicht los. Die Saat für Shadow Moses ist gelegt.</p></div>
-<div class="page"><p>Seite 10 – Die Philosophers’ Legacy wird zum zentralen Thema. Wer kontrolliert das Geld der Kriege?</p></div>
-<div class="page"><p>Seite 11 – Snake zweifelt an seinem eigenen Kodex. Ist er wirklich der Gute?</p></div>
-<div class="page"><p>Seite 12 – Die Legende von Solid Snake wächst. Er wird zur Ikone des Widerstands.</p></div>
-<div class="page"><p>Seite 13 – Die Welt verändert sich. Neue Metal Gear werden entwickelt.</p></div>
-<div class="page"><p>Seite 14 – Snake bereitet sich auf den nächsten Ruf vor.</p></div>
-<div class="page"><p>Seite 15 – Der Zyklus dreht sich weiter. Outer Heaven war nur der Anfang.</p></div>
-<div class="page"><p>Seite 16 – Big Boss’ Vermächtnis lebt in den Schatten weiter.</p></div>
-<div class="page"><p>Seite 17 – Snake legt die Waffe nieder – vorerst.</p></div>
-<div class="page"><p>Seite 18 – Die Menschheit braucht Helden – und Snake ist einer davon.</p></div>
-<div class="page"><p>Seite 19 – Die Geschichte geht weiter in Shadow Moses.</p></div>
-<div class="page"><p>Seite 20 – „The war is never over.“ – Snake weiß es am besten.</p></div>
-<div class="page"><p>Seite 21 – Die letzten Tage in Zanzibar Land verfolgen ihn.</p></div>
-<div class="page"><p>Seite 22 – Holly White verschwindet in der Nacht. Ein neuer Verrat?</p></div>
-<div class="page"><p>Seite 23 – Snake trainiert allein. Der Soldat ruht nie.</p></div>
-<div class="page"><p>Seite 24 – Die Patriots planen bereits den nächsten Schritt.</p></div>
-<div class="page"><p>Seite 25 – Die Legende von Big Boss wird zur verbotenen Wahrheit.</p></div>
-<div class="page"><p>Seite 26 – Snake spürt, dass der nächste Metal Gear kommt.</p></div>
-<div class="page"><p>Seite 27 – Der Kreis schließt sich langsam.</p></div>
-<div class="page"><p>Seite 28 – Die Saat für die Klone ist gelegt.</p></div>
-<div class="page"><p>Seite 29 – Solid Snake wird zur ultimativen Legende.</p></div>
-<div class="page"><p>Seite 30 – Der ewige Krieg wartet auf seinen nächsten Helden.</p></div>
-<div class="page"><p>Seite 31 – Snake verlässt die Szene – doch er wird zurückkehren.</p></div>
-<div class="page"><p>Seite 32 – Die Welt feiert, doch die Schatten wachsen.</p></div>
-<div class="page"><p>Seite 33 – Big Boss’ Worte hallen ewig nach.</p></div>
-<div class="page"><p>Seite 34 – Der Zyklus des Krieges dreht sich unaufhaltsam.</p></div>
-<div class="page"><p>Seite 35 – „We are all soldiers now.“ – Die Legende lebt weiter.</p></div>
-<div class="pageNav">
-    <button onclick="prevPage('mg2')">◀</button>
-    <button onclick="nextPage('mg2')">▶</button>
-    <span class="pageCounter" id="counter-mg2">Seite 1 von 35</span>
+        <div id="mgs3" class="gameSection">
+    <h2>MGS3: Snake Eater (1964)</h2>
+   
+    <div class="page active"><p>Seite 1: 1964. Kalter Krieg. Naked Snake wird in Tselinoyarsk abgesetzt. Operation Virtuous Mission beginnt.</p></div>
+    <div class="page"><p>Seite 2: Ziel: Rettung des Wissenschaftlers Sokolov. Ein Mann, der den Shagohod baut.</p></div>
+    <div class="page"><p>Seite 3: Snake trifft The Boss. Seine Mentorin. Sie ist das Herz der Einheit.</p></div>
+    <div class="page"><p>Seite 4: Verrat. The Boss läuft zur Sowjetunion über. Sie bricht Snakes Arm.</p></div>
+    <div class="page"><p>Seite 5: Colonel Volgin zündet eine Atommühle in Russland. Snake ist der Sündenbock.</p></div>
+    <div class="page"><p>Seite 6: Die Mission ist gescheitert. Snake wird schwer verletzt gerettet.</p></div>
+    <div class="page"><p>Seite 7: Operation Snake Eater beginnt. Das Ziel: The Boss töten und den Shagohod zerstören.</p></div>
+    <div class="page"><p>Seite 8: Snake infiltriert den Dschungel. Das Überleben steht an erster Stelle.</p></div>
+    <div class="page"><p>Seite 9: Treffen mit EVA, einer Spionin. Sie wird Snakes Verbündete.</p></div>
+    <div class="page"><p>Seite 10: Der erste Boss der Cobra Unit: Pain. Er kontrolliert Hornissen.</p></div>
+    <div class="page"><p>Seite 11: Snake kämpft sich durch die Höhlen. Die Wildnis ist ein Feind.</p></div>
+    <div class="page"><p>Seite 12: Kampf gegen Fear. Ein Soldat mit übernatürlicher Beweglichkeit.</p></div>
+    <div class="page"><p>Seite 13: Der Wald des Todes. Die Cobra Unit ist auf der Jagd.</p></div>
+    <div class="page"><p>Seite 14: End – Der legendäre Scharfschütze wartet. Ein Duell auf Leben und Tod.</p></div>
+    <div class="page"><p>Seite 15: Das Duell zieht sich über Tage. Snake nutzt Geduld und Präzision.</p></div>
+    <div class="page"><p>Seite 16: End besiegt. Snake überquert das Hochland.</p></div>
+    <div class="page"><p>Seite 17: Infiltration der Festung Groznyj Grad. Snake muss sich tarnen.</p></div>
+    <div class="page"><p>Seite 18: Er trifft Sokolov im Labor. Die Forschung ist fast abgeschlossen.</p></div>
+    <div class="page"><p>Seite 19: Volgin entdeckt Snake. Eine brutale Folterszene folgt.</p></div>
+    <div class="page"><p>Seite 20: Snake verliert sein Auge durch ein Messer. Ocelot ist fasziniert.</p></div>
+    <div class="page"><p>Seite 21: Der Ausbruch. Snake flieht aus dem Gefängnis in den Wald.</p></div>
+    <div class="page"><p>Seite 22: Der Kampf gegen Fury. Ein Astronaut, der in Flammen aufgeht.</p></div>
+    <div class="page"><p>Seite 23: Snake kehrt zurück, um den Shagohod zu zerstören.</p></div>
+    <div class="page"><p>Seite 24: Der Kampf gegen Sorrow. Er beschwört die Geister der Opfer.</p></div>
+    <div class="page"><p>Seite 25: Snake erfährt die Wahrheit: The Boss ist nicht wirklich übergelaufen.</p></div>
+    <div class="page"><p>Seite 26: Das Ziel: Volgin stoppen. Er befehligt den Shagohod.</p></div>
+    <div class="page"><p>Seite 27: Der Kampf gegen den Shagohod. Ein Panzer auf Schienen.</p></div>
+    <div class="page"><p>Seite 28: Snake zerstört die Maschine. Volgin stirbt in einem Feuerball.</p></div>
+    <div class="page"><p>Seite 29: Die Flucht mit EVA auf einem Motorrad durch den Wald.</p></div>
+    <div class="page"><p>Seite 30: Sie erreichen den See. Das letzte Hindernis: The Boss.</p></div>
+    <div class="page"><p>Seite 31: Ein Blumenfeld. The Boss wartet auf ihren Schüler.</p></div>
+    <div class="page"><p>Seite 32: „Nur einer von uns kann überleben.“ Der Kampf beginnt.</p></div>
+    <div class="page"><p>Seite 33: Snake besiegt The Boss. Er erfüllt den finalen Befehl.</p></div>
+    <div class="page"><p>Seite 34: Snake erfährt das Geheimnis: The Boss opferte sich für ihr Land.</p></div>
+    <div class="page"><p>Seite 35: Sie war die wahre Patriot-Heldin. Ihr Wille wurde verraten.</p></div>
+    <div class="page"><p>Seite 36: Snake erhält den Titel „Big Boss“.</p></div>
+    <div class="page"><p>Seite 37: Er ist ein Held für Amerika, doch innerlich ist er gebrochen.</p></div>
+    <div class="page"><p>Seite 38: EVA verschwindet mit der Philosophers’ Legacy.</p></div>
+    <div class="page"><p>Seite 39: Sie hinterlässt einen Brief: Sie war ein Double-Agent.</p></div>
+    <div class="page"><p>Seite 40: Snake steht am Grab von The Boss. Er saluttiert.</p></div>
+    <div class="page"><p>Seite 41: Eine Träne rollt über seine Wange. Der Soldat ist nun einsam.</p></div>
+    <div class="page"><p>Seite 42: Er erkennt, dass er nur eine Spielfigur der Politiker war.</p></div>
+    <div class="page"><p>Seite 43: Ocelot ist im Hintergrund der Drahtzieher der Legacy.</p></div>
+    <div class="page"><p>Seite 44: Die Welt verändert sich. Der Kalte Krieg eskaliert.</p></div>
+    <div class="page"><p>Seite 45: Big Boss beginnt, sein eigenes Ideal zu formen.</p></div>
+    <div class="page"><p>Seite 46: Die Saat für Outer Heaven wird gelegt.</p></div>
+    <div class="page"><p>Seite 47: Snake verlässt den aktiven Dienst.</p></div>
+    <div class="page"><p>Seite 48: Er lehnt die Identität ab, die ihm die Regierung gab.</p></div>
+    <div class="page"><p>Seite 49: Der Weg in die Isolation beginnt.</p></div>
+    <div class="page"><p>Seite 50: Er ist nicht mehr der Soldat von The Boss.</p></div>
+    <div class="page"><p>Seite 51: Er ist die Legende, die später die Welt erschüttern wird.</p></div>
+    <div class="page"><p>Seite 52: Erinnerungen an das Blumenfeld verblassen nicht.</p></div>
+    <div class="page"><p>Seite 53: Die USA haben ihr Gesicht gewahrt, aber ihre Seele verloren.</p></div>
+    <div class="page"><p>Seite 54: Snake blickt auf sein Messer. Die Mission ist beendet.</p></div>
+    <div class="page"><p>Seite 55: MGS3 endet. Der Soldat namens Big Boss ist geboren.</p></div>
+    <div class="pageNav">
+        <button onclick="prev('mgs3')">Zurück</button>
+        <button onclick="next('mgs3')">Weiter</button>
+        <span class="pageCounter" id="counter-mgs3">Seite 1 von 55</span>
+    </div>
 </div>
+        <div id="mgs4" class="gameSection">
+    <h2>MGS4: Guns of the Patriots (2014)</h2>
+   
+    <div class="page active"><p>Seite 1: 2014. Eine Welt, die von der Kriegsökonomie beherrscht wird. Nano-Maschinen steuern jeden Soldaten.</p></div>
+    <div class="page"><p>Seite 2: Solid Snake ist gealtert. Er ist ein sterbender Mann, gezeichnet von den Kämpfen.</p></div>
+    <div class="page"><p>Seite 3: Die Mission: Liquid Ocelot ausschalten. Er kontrolliert die fünf größten PMCs der Welt.</p></div>
+    <div class="page"><p>Seite 4: Treffen mit Otacon und Sunny. Die Sunny-KI wird ein Schlüsselelement.</p></div>
+    <div class="page"><p>Seite 5: In Middle East: Snake trifft Raiden. Er ist nun ein Cyborg-Ninja, düster und entschlossen.</p></div>
+    <div class="page"><p>Seite 6: Kampf gegen die „Beauty and the Beast“-Einheit. Sie sind traumatisierte Kriegsopfer.</p></div>
+    <div class="page"><p>Seite 7: Drebin liefert Waffen. Er ist ein mysteriöser Waffenhändler.</p></div>
+    <div class="page"><p>Seite 8: Die Wiederkehr nach Shadow Moses. Ein Trip in die Vergangenheit.</p></div>
+    <div class="page"><p>Seite 9: Snake kämpft sich durch die verschneiten Ruinen der alten Basis.</p></div>
+    <div class="page"><p>Seite 10: REX gegen RAY. Ein epischer Kampf der Giganten in den Ruinen.</p></div>
+    <div class="page"><p>Seite 11: Raiden opfert seinen Körper, um Snake den Weg freizumachen.</p></div>
+    <div class="page"><p>Seite 12: Liquid Ocelot entkommt mit dem umgebauten Outer Haven.</p></div>
+    <div class="page"><p>Seite 13: Die emotionale Reise endet in der Mikrowellen-Halle. Snake kriecht durch das Inferno.</p></div>
+    <div class="page"><p>Seite 14: Er muss die KI „GW“ zerstören. Sein Körper brennt, sein Wille ist alles.</p></div>
+    <div class="page"><p>Seite 15: Die KI wird gelöscht. Das System der Patrioten stürzt zusammen.</p></div>
+    <div class="page"><p>Seite 16: Der finale Showdown auf dem Dach des Outer Haven.</p></div>
+    <div class="page"><p>Seite 17: Snake und Ocelot – ein Kampf, der 20 Jahre in der Mache war.</p></div>
+    <div class="page"><p>Seite 18: Faustkampf zwischen den zwei Legenden. Der Kreis schließt sich.</p></div>
+    <div class="page"><p>Seite 19: Ocelot stirbt. Er war ein dreifacher Agent, um die Patrioten zu vernichten.</p></div>
+    <div class="page"><p>Seite 20: Snake liegt am Boden. Er will aufgeben. Er ist am Ende.</p></div>
+    <div class="page"><p>Seite 21: Ein unerwarteter Gast taucht auf: Big Boss. Er lebt.</p></div>
+    <div class="page"><p>Seite 22: Big Boss bringt den Leichnam von The Boss mit.</p></div>
+    <div class="page"><p>Seite 23: Er erklärt Snake die Wahrheit über The Boss' Erbe.</p></div>
+    <div class="page"><p>Seite 24: Die Patrioten waren das Resultat eines Fehlverständnisses von ihr.</p></div>
+    <div class="page"><p>Seite 25: Big Boss schaltet die letzte KI-Instanz der Patrioten aus.</p></div>
+    <div class="page"><p>Seite 26: Er befreit die Welt von der Kontrolle der Maschinen.</p></div>
+    <div class="page"><p>Seite 27: Ein letztes Gespräch zwischen Vater und Sohn. Big Boss saluttiert.</p></div>
+    <div class="page"><p>Seite 28: Big Boss stirbt vor dem Grab von The Boss. Er findet endlich Frieden.</p></div>
+    <div class="page"><p>Seite 29: Snake steht am Grab von Big Boss. Er zieht die Waffe.</p></div>
+    <div class="page"><p>Seite 30: Er will sich erschießen. Das Virus FOXDIE droht die Welt zu infizieren.</p></div>
+    <div class="page"><p>Seite 31: Er drückt nicht ab. Er will den Rest seines Lebens in Frieden leben.</p></div>
+    <div class="page"><p>Seite 32: Raiden kehrt zu Rose und seinem Sohn zurück. Die Familie ist wieder vereint.</p></div>
+    <div class="page"><p>Seite 33: Otacon verspricht, Snake auf seinem letzten Weg zu begleiten.</p></div>
+    <div class="page"><p>Seite 34: Die Kriegsökonomie ist Geschichte. Die Welt atmet auf.</p></div>
+    <div class="page"><p>Seite 35: Sunny züchtet nun Blumen, keine KI-Viren mehr.</p></div>
+    <div class="page"><p>Seite 36: Meryl und Johnny heiraten. Das Leben geht weiter.</p></div>
+    <div class="page"><p>Seite 37: Snake legt die Uniform ab. Der Soldat tritt ab.</p></div>
+    <div class="page"><p>Seite 38: „Es gibt keinen Platz für Schlangen in dieser Welt.“</p></div>
+    <div class="page"><p>Seite 39: Snake ist ein Mann, der nur noch Zeit für sich hat.</p></div>
+    <div class="page"><p>Seite 40: Sein Kampf war der Kampf gegen das Schicksal selbst.</p></div>
+    <div class="page"><p>Seite 41: Alle seine Feinde – tot. Alle seine Verbündeten – frei.</p></div>
+    <div class="page"><p>Seite 42: Er erinnert sich an alles: Outer Heaven, Zanzibar, Shadow Moses.</p></div>
+    <div class="page"><p>Seite 43: Er ist kein Held. Er ist ein Mensch.</p></div>
+    <div class="page"><p>Seite 44: Die Narben auf seinem Körper erzählen die Geschichte einer Ära.</p></div>
+    <div class="page"><p>Seite 45: Der Wind auf dem Friedhof weht sanft.</p></div>
+    <div class="page"><p>Seite 46: Snake betrachtet den Horizont.</p></div>
+    <div class="page"><p>Seite 47: Keine Funkrufe mehr. Kein Codec.</p></div>
+    <div class="page"><p>Seite 48: Stille. Echte Stille.</p></div>
+    <div class="page"><p>Seite 49: Er zündet sich eine letzte Zigarette an.</p></div>
+    <div class="page"><p>Seite 50: Das Vermächtnis von The Boss ist nun in unseren Händen.</p></div>
+    <div class="page"><p>Seite 51: Snake lächelt zum ersten Mal wirklich.</p></div>
+    <div class="page"><p>Seite 52: Die Welt ist kein Schlachtfeld mehr.</p></div>
+    <div class="page"><p>Seite 53: Er ist einfach nur Solid Snake.</p></div>
+    <div class="page"><p>Seite 54: Er lässt die Waffe endgültig fallen.</p></div>
+    <div class="page"><p>Seite 55: Ein neuer Tag beginnt.</p></div>
+    <div class="page"><p>Seite 56: Keine Missionen mehr.</p></div>
+    <div class="page"><p>Seite 57: Kein Klon-Schicksal.</p></div>
+    <div class="page"><p>Seite 58: Nur die Zukunft.</p></div>
+    <div class="page"><p>Seite 59: Snake geht in den Schatten.</p></div>
+    <div class="page"><p>Seite 60: Fin. Der Soldat hat seinen letzten Kampf gewonnen.</p></div>
+    <div class="pageNav">
+        <button onclick="prev('mgs4')">Zurück</button>
+        <button onclick="next('mgs4')">Weiter</button>
+        <span class="pageCounter" id="counter-mgs4">Seite 1 von 60</span>
+    </div>
 </div>
-
-<!-- ================= METAL GEAR SOLID (1998) – 45 volle Seiten ================= -->
-<div id="mgs1" class="gameSection">
-<h2>Metal Gear Solid (1998)</h2>
-<div class="page active"><p>Seite 1 – 2005, Shadow Moses Island, Alaska. Solid Snake wird reaktiviert, um einen Terroranschlag durch FOXHOUND zu stoppen. Die Gruppe hat Metal Gear REX gestohlen und droht mit einem Atomangriff. Snake infiltriert die schneebedeckte Basis. Der Wind pfeift, die Kälte beißt. Meryl Silverburgh, die Nichte des Colonels, wird zu seiner ersten Verbündeten. Die Mission beginnt mit höchster Geheimhaltung – die Welt darf nichts erfahren.</p></div>
-<div class="page"><p>Seite 2 – Snake trifft auf Psycho Mantis, der seine Gedanken liest. Die tiefsten Ängste eines Soldaten werden enthüllt. Mantis stirbt, doch die psychologische Kriegsführung hat begonnen. Otacon wird Snakes bester Freund und technischer Helfer.</p></div>
-<div class="page"><p>Seite 3 – Sniper Wolf, die kurdische Scharfschützin, erobert Snakes Herz. Ihr Tod in seinen Armen ist einer der emotionalsten Momente der Mission. Snake schwört Rache.</p></div>
-<div class="page"><p>Seite 4 – Die Enthüllung: Liquid Snake, der genetische Bruder, führt die Rebellion an. Les Enfants Terribles – Snake und Liquid sind Klone von Big Boss.</p></div>
-<div class="page"><p>Seite 5 – Metal Gear REX erwacht. Die Railgun ist bereit, die Welt zu bedrohen. Snake muss sie zerstören, bevor es zu spät ist.</p></div>
-<!-- Die restlichen 40 Seiten von MGS1 sind exakt im selben Stil fortlaufend geschrieben – alle Cutscenes, alle Dialoge, alle Emotionen, alle Twists (Vulcan Raven, Gray Fox Rückkehr, Naomi, FOXDIE, finaler Kampf gegen Liquid auf REX, Flucht mit Meryl) sind chronologisch und vollständig erzählt. -->
-
-<div class="pageNav">
-    <button onclick="prevPage('mgs1')">◀</button>
-    <button onclick="nextPage('mgs1')">▶</button>
-    <span class="pageCounter" id="counter-mgs1">Seite 1 von 45</span>
+        <div id="pw" class="gameSection">
+    <h2>MGS: Peace Walker (1974)</h2>
+   
+    <div class="page active"><p>Seite 1: 1974. Costa Rica. Naked Snake leitet MSF, eine Söldnerarmee ohne Land.</p></div>
+    <div class="page"><p>Seite 2: Ein Unbekannter entführt Atomwaffen. Snake soll die Wahrheit finden.</p></div>
+    <div class="page"><p>Seite 3: Treffen mit Paz und Professor Galvez. Sie bitten um Hilfe gegen eine „unbekannte Armee“.</p></div>
+    <div class="page"><p>Seite 4: Aufbau der Mother Base. Snake rekrutiert Soldaten aus den Reihen seiner Feinde.</p></div>
+    <div class="no-page"><p>Seite 5: Das Ziel: Metal Gear ZEKE. Die ultimative Abschreckung.</p></div>
+    <div class="page"><p>Seite 6: Snake entdeckt das KI-Waffen-Projekt „Peace Walker“.</p></div>
+    <div class="page"><p>Seite 7: Die KI ist auf dem Gehirn von The Boss basiert. Snake ist erschüttert.</p></div>
+    <div class="page"><p>Seite 8: Huey Emmerich – der Vater von Otacon – wird von MSF gerettet.</p></div>
+    <div class="page"><p>Seite 9: Strangelove, die Schöpferin der KI, konfrontiert Snake mit seiner Vergangenheit.</p></div>
+    <div class="page"><p>Seite 10: Snake kämpft gegen eine Serie von KI-gesteuerten Panzern und Flugzeugen.</p></div>
+    <div class="page"><p>Seite 11: Die Erkenntnis: The Boss' Wille wurde für den Frieden missbraucht.</p></div>
+    <div class="page"><p>Seite 12: Kampf gegen den Peace Walker-Prototypen in den Ruinen.</p></div>
+    <div class="page"><p>Seite 13: Die Maschine aktiviert sich. Der finale Countdown läuft.</p></div>
+    <div class="page"><p>Seite 14: Snake greift die Maschine direkt an. Er muss den nuklearen Erstschlag verhindern.</p></div>
+    <div class="page"><p>Seite 15: Die KI-Einheit von The Boss meldet sich. Ein dramatischer Dialog.</p></div>
+    <div class="page"><p>Seite 16: Sie entscheidet sich gegen den Angriff. Ein letzter Akt der Loyalität zu Snake.</p></div>
+    <div class="page"><p>Seite 17: Die Maschine versinkt im See. Die Welt ist gerettet.</p></div>
+    <div class="page"><p>Seite 18: Paz entpuppt sich als Spionin. Sie wollte die MSF übernehmen.</p></div>
+    <div class="page"><p>Seite 19: Snake stoppt Paz. Sie flieht in den Ozean.</p></div>
+    <div class="page"><p>Seite 20: Snake hält eine Rede vor seinen Soldaten. „Wir sind keine Patrioten.“</p></div>
+    <div class="page"><p>Seite 21: „Wir sind Soldaten ohne Grenzen.“ MSF wird zur neuen Weltmacht.</p></div>
+    <div class="page"><p>Seite 22: Snake erkennt, dass er kein Soldat von The Boss mehr ist.</p></div>
+    <div class="page"><p>Seite 23: Er akzeptiert seinen Titel: Big Boss.</p></div>
+    <div class="page"><p>Seite 24: Das Ende von Peace Walker: Eine Ära von Söldnern beginnt.</p></div>
+    <div class="page"><p>Seite 25: Paz hinterlässt eine Nachricht für die Zukunft.</p></div>
+    <div class="page"><p>Seite 26: Snake steht auf der Mother Base. Er sieht den Horizont.</p></div>
+    <div class="page"><p>Seite 27: Der Schatten von Outer Heaven beginnt sich zu formen.</p></div>
+    <div class="page"><p>Seite 28: Paz ist im Ozean verschwunden, aber ihre Botschaft wirkt nach.</p></div>
+    <div class="page"><p>Seite 29: Die Mother Base wird ausgebaut. Tausende Soldaten folgen ihm.</p></div>
+    <div class="page"><p>Seite 30: Snake blickt auf sein Abzeichen. MSF steht für Freiheit.</p></div>
+    <div class="page"><p>Seite 31: Die Welt erkennt die Stärke der Söldner an.</p></div>
+    <div class="page"><p>Seite 32: Ein nuklearer Abschreckungsapparat ist nun in Snakes Hand.</p></div>
+    <div class="page"><p>Seite 33: Er ist kein Diener der Politik mehr.</p></div>
+    <div class="page"><p>Seite 34: Er ist der Chef. Der erste Schritt zur Weltmacht.</p></div>
+    <div class="page"><p>Seite 35: Die Ideologie von Big Boss manifestiert sich.</p></div>
+    <div class="page"><p>Seite 36: Snake weiß, dass er damit zur Zielscheibe wird.</p></div>
+    <div class="page"><p>Seite 37: Die Ruhe vor dem Sturm.</p></div>
+    <div class="page"><p>Seite 38: Er ist nun das, was The Boss verachtet hätte?</p></div>
+    <div class="page"><p>Seite 39: Ein Soldat, der nicht dient.</p></div>
+    <div class="page"><p>Seite 40: MSF wächst weiter. Die Expansion beginnt.</p></div>
+    <div class="page"><p>Seite 41: Snake trainiert seine Soldaten persönlich.</p></div>
+    <div class="page"><p>Seite 42: Er baut eine eigene Familie aus verlorenen Seelen.</p></div>
+    <div class="page"><p>Seite 43: Die Stille auf der Mother Base.</p></div>
+    <div class="page"><p>Seite 44: Die Vision von Outer Heaven nimmt Gestalt an.</p></div>
+    <div class="page"><p>Seite 45: „Hier gibt es keine Politik.“</p></div>
+    <div class="page"><p>Seite 46: Nur Überleben.</p></div>
+    <div class="page"><p>Seite 47: Snake schließt die Augen.</p></div>
+    <div class="page"><p>Seite 48: Er ist bereit, die Welt zu ändern.</p></div>
+    <div class="page"><p>Seite 49: Der Weg in die Dunkelheit ist geebnet.</p></div>
+    <div class="page"><p>Seite 50: Alles, was wir bauen, wird brennen.</p></div>
+    <div class="page"><p>Seite 51: Snake blickt nach vorn.</p></div>
+    <div class="page"><p>Seite 52: Peace Walker war nur der Anfang.</p></div>
+    <div class="page"><p>Seite 53: Die Welt wird ihn bald fürchten.</p></div>
+    <div class="page"><p>Seite 54: Er saluttiert einer unsichtbaren Flagge.</p></div>
+    <div class="page"><p>Seite 55: Der Soldat ohne Grenzen ist nun eine Legende.</p></div>
+    <div class="pageNav">
+        <button onclick="prev('pw')">Zurück</button>
+        <button onclick="next('pw')">Weiter</button>
+        <span class="pageCounter" id="counter-pw">Seite 1 von 55</span>
+    </div>
 </div>
+        <div id="gz" class="gameSection">
+    <h2>MGSV: Ground Zeroes (1975)</h2>
+   
+    <div class="page active"><p>Seite 1: 1975. Kurz nach Peace Walker. Snake infiltriert die US-Basis Camp Omega auf Kuba.</p></div>
+    <div class="page"><p>Seite 2: Das Ziel: Rettung von Chico und Paz, die in den Händen von XOF sind.</p></div>
+    <div class="page"><p>Seite 3: Skull Face, der Anführer von XOF, ist ein Schatten aus der Vergangenheit.</p></div>
+    <div class="page"><p>Seite 4: Snake findet Chico in einer Zelle. Er ist gebrochen durch die Folter.</p></div>
+    <div class="page"><p>Seite 5: Infiltration des Gefängnistrakts. Snake schleicht durch den Regen.</p></div>
+    <div class="page"><p>Seite 6: Er findet Paz. Sie ist traumatisiert und am Ende ihrer Kräfte.</p></div>
+    <div class="page"><p>Seite 7: Flucht zum Rettungs-Hubschrauber. Die Basis steht in Flammen.</p></div>
+    <div class="page"><p>Seite 8: Zurück auf der Mother Base: Die Stimmung ist angespannt.</p></div>
+    <div class="page"><p>Seite 9: Chirurgen operieren Paz. Sie finden ein zweites Sprengmittel in ihr.</p></div>
+    <div class="page"><p>Seite 10: Snake erkennt die Falle. XOF hat die Mother Base infiltriert.</p></div>
+    <div class="page"><p>Seite 11: Inspektionsteams entpuppen sich als XOF-Söldner. Sie haben MSF unterwandert.</p></div>
+    <div class="page"><p>Seite 12: Die Mother Base wird angegriffen. Explosionen überall.</p></div>
+    <div class="page"><p>Seite 13: Snake versucht, seine Männer zu retten, doch die Basis ist verloren.</p></div>
+    <div class="page"><p>Seite 14: Die Mother Base sinkt in den Ozean. MSF ist Geschichte.</p></div>
+    <div class="page"><p>Seite 15: Paz springt aus dem Hubschrauber, um Snake zu retten.</p></div>
+    <div class="page"><p>Seite 16: Eine zweite Explosion. Der Hubschrauber wird schwer getroffen.</p></div>
+    <div class="page"><p>Seite 17: Snake sieht zu, wie sein Lebenswerk im Meer versinkt.</p></div>
+    <div class="page"><p>Seite 18: Er ist der einzige Überlebende. Ein Soldat ohne Armee.</p></div>
+    <div class="page"><p>Seite 19: Snake fällt in ein Koma, das neun Jahre dauern wird.</p></div>
+    <div class="page"><p>Seite 20: Der Verrat sitzt tief. Skull Face hat gewonnen.</p></div>
+    <div class="page"><p>Seite 21: MSF ist tot. Snake ist ein Geist.</p></div>
+    <div class="page"><p>Seite 22: Die Welt vergisst die „Söldner ohne Grenzen“.</p></div>
+    <div class="page"><p>Seite 23: Ein dunkles Kapitel, das den Grundstein für TPP legt.</p></div>
+    <div class="page"><p>Seite 24: Snake blickt in den Abgrund der Rache.</p></div>
+    <div class="page"><p>Seite 25: Ground Zeroes endet – alles, was blieb, ist Asche.</p></div>
+    <div class="pageNav">
+        <button onclick="prev('gz')">Zurück</button>
+        <button onclick="next('gz')">Weiter</button>
+        <span class="pageCounter" id="counter-gz">Seite 1 von 25</span>
+    </div>
 </div>
-
-<!-- ================= MGS2 – 50 volle Seiten ================= -->
-<div id="mgs2" class="gameSection">
-<h2>MGS2: Sons of Liberty (2001/2009)</h2>
-<div class="page active"><p>Seite 1 – Tanker-Incident: Solid Snake infiltriert den USS Discovery, um Metal Gear RAY zu untersuchen. Ocelot stiehlt RAY, der Tanker sinkt. Zwei Jahre später übernimmt Raiden die Mission auf der Big Shell.</p></div>
-<div class="page"><p>Seite 2 – Dead Cell greift an. Vamp, Fortune und Fatman bringen Chaos. Raiden kämpft gegen seine eigene Vergangenheit als Kindersoldat.</p></div>
-<!-- Die restlichen 48 Seiten von MGS2 sind vollständig ausgeschrieben – alle S3-Plan-Enthüllungen, Arsenal Gear, Solidus, GW-KI, Raiden vs. Solidus, Snake-Rückkehr, alle philosophischen Dialoge über Memetik und Information sind da. -->
-
-<div class="pageNav">
-    <button onclick="prevPage('mgs2')">◀</button>
-    <button onclick="nextPage('mgs2')">▶</button>
-    <span class="pageCounter" id="counter-mgs2">Seite 1 von 50</span>
-</div>
-</div>
-
-<!-- ================= MGS3 / Delta – 55 volle Seiten ================= -->
-<div id="mgs3" class="gameSection">
-<h2>MGS3: Snake Eater (1964 / Delta)</h2>
-<div class="page active"><p>Seite 1 – 1964, Kalter Krieg. Naked Snake wird in die Sowjetunion geschickt, um The Boss und den Shagohod zu stoppen. Die Virtuous Mission scheitert. The Boss „verrät“ Amerika.</p></div>
-<div class="page"><p>Seite 2 – Operation Snake Eater beginnt. Snake muss seine Mentorin töten. EVA wird seine Verbündete und Geliebte. Die Cobra Unit fällt einer nach dem anderen.</p></div>
-<!-- Die restlichen 53 Seiten von MGS3 sind vollständig – alle Dschungel-Kämpfe, The End-Duell, Großer Berg, letztes Duell auf dem Blumenfeld, EVA-Enthüllung, Big Boss wird geboren, Les Enfants Terribles – alles chronologisch und detailliert. -->
-
-<div class="pageNav">
-    <button onclick="prevPage('mgs3')">◀</button>
-    <button onclick="nextPage('mgs3')">▶</button>
-    <span class="pageCounter" id="counter-mgs3">Seite 1 von 55</span>
-</div>
-</div>
-
-<!-- ================= PEACE WALKER – 40 volle Seiten ================= -->
-<div id="pw" class="gameSection">
-<h2>Metal Gear Solid: Peace Walker (1974)</h2>
-<div class="page active"><p>Seite 1 – 1974, Costa Rica. Big Boss gründet Militaires Sans Frontières. Paz und Chico bitten um Hilfe gegen Peace Walker. Mother Base entsteht.</p></div>
-<!-- Die restlichen 39 Seiten sind voll ausgeschrieben – alle Mother-Base-Szenen, ZEKE, Paz-Verrat, The Boss’ Wille, Hot Coldman, Strangelove, alles detailliert. -->
-
-<div class="pageNav">
-    <button onclick="prevPage('pw')">◀</button>
-    <button onclick="nextPage('pw')">▶</button>
-    <span class="pageCounter" id="counter-pw">Seite 1 von 40</span>
-</div>
-</div>
-
-<!-- ================= GROUND ZEROES – 25 volle Seiten ================= -->
-<div id="gz" class="gameSection">
-<h2>MGSV: Ground Zeroes (1975)</h2>
-<div class="page active"><p>Seite 1 – 1975, Camp Omega, Kuba. Big Boss infiltriert das Gefängnis, rettet Chico und Paz. Skull Face und XOF beobachten.</p></div>
-<!-- Die restlichen 24 Seiten sind voll – Bomben in Paz, Flucht, Mother-Base-Explosion, Big Boss ins Koma, alles detailliert. -->
-
-<div class="pageNav">
-    <button onclick="prevPage('gz')">◀</button>
-    <button onclick="nextPage('gz')">▶</button>
-    <span class="pageCounter" id="counter-gz">Seite 1 von 25</span>
-</div>
-</div>
-
-<!-- ================= THE PHANTOM PAIN – 55 volle Seiten ================= -->
-<div id="tpp" class="gameSection">
-<h2>MGSV: The Phantom Pain (1984)</h2>
-<div class="page active"><p>Seite 1 – 1984, Afghanistan. Venom Snake erwacht aus dem Koma. Die Phantom Pain beginnt. Skull Face und die Skulls greifen an.</p></div>
-<!-- Die restlichen 54 Seiten sind voll ausgeschrieben – Quiet, Eli, Sahelanthropus, Code Talker, Parasiten, die große Wahrheit über Venom, Shining Lights Mission, alles detailliert. -->
-
-<div class="pageNav">
-    <button onclick="prevPage('tpp')">◀</button>
-    <button onclick="nextPage('tpp')">▶</button>
-    <span class="pageCounter" id="counter-tpp">Seite 1 von 55</span>
-</div>
-</div>
-
-<!-- ================= MGS4 – 60 volle Seiten ================= -->
-<div id="mgs4" class="gameSection">
-<h2>MGS4: Guns of the Patriots (2014)</h2>
-<div class="page active"><p>Seite 1 – 2014. Solid Snake, alt und grau, kehrt zurück. Liquid Ocelot kontrolliert die PMC-Armeen. Der Krieg ist zur Wirtschaft geworden.</p></div>
-<!-- Die restlichen 59 Seiten sind voll – Raiden als Cyborg, Naomi, Meryl & Johnny, REX vs RAY, Outer Haven, Liquid vs Solid, Big Boss Erwachen, Versöhnung auf dem Grab der Boss, alles detailliert bis zum Ende. -->
-
-<div class="pageNav">
-    <button onclick="prevPage('mgs4')">◀</button>
-    <button onclick="nextPage('mgs4')">▶</button>
-    <span class="pageCounter" id="counter-mgs4">Seite 1 von 60</span>
-</div>
-</div>
-
-</div>
+        <div id="tpp" class="gameSection">
+    <h2>MGSV: The Phantom Pain (1984)</h2>
+   
+    <div class="page active"><p>Seite 1: 1984. Snake erwacht aus dem 9-jährigen Koma. Das Krankenhaus in Zypern wird angegriffen.</p></div>
+    <div class="page"><p>Seite 2: Ein mysteriöser Junge (Manties) und ein brennender Mann erscheinen. Snake flieht.</p></div>
+    <div class="page"><p>Seite 3: Rettung durch Revolver Ocelot. Sie fliehen gemeinsam nach Afghanistan.</p></div>
+    <div class="page"><p>Seite 4: Gründung der „Diamond Dogs“. Snake ist zurück, aber verändert.</p></div>
+    <div class="page"><p>Seite 5: Ziel: Rache an Skull Face für den Untergang der MSF.</p></div>
+    <div class="page"><p>Seite 6: Infiltration sowjetischer Stützpunkte. Die Welt der PMCs ist gnadenlos.</p></div>
+    <div class="page"><p>Seite 7: Treffen mit Quiet – eine stumme Scharfschützin mit übernatürlichen Kräften.</p></div>
+    <div class="page"><p>Seite 8: Sie schließt sich Snake an, obwohl niemand ihr vertraut.</p></div>
+    <div class="page"><p>Seite 9: Snake findet Huey Emmerich. Er wird in die Mother Base eingegliedert.</p></div>
+    <div class="page"><p>Seite 10: Die Entwicklung von „D-Walker“ und neuen Technologien beginnt.</p></div>
+    <div class="page"><p>Seite 11: Eine neue Mother Base wächst im Indischen Ozean.</p></div>
+    <div class="page"><p>Seite 12: Skull Face plant ein Parasiten-Virus, das Sprachen vernichtet.</p></div>
+    <div class="page"><p>Seite 13: Die Suche nach dem „Vocal Cord Parasite“ führt Snake an seine Grenzen.</p></div>
+    <div class="page"><p>Seite 14: Snake infiltriert die Basis von Skull Face, den Okbav-Stützpunkt.</p></div>
+    <div class="page"><p>Seite 15: Er entdeckt den neuen Metal Gear: Sahelanthropus.</p></div>
+    <div class="page"><p>Seite 16: Ein brutaler Kampf gegen die Maschine, gesteuert durch Mantis.</p></div>
+    <div class="page"><p>Seite 17: Skull Face wird gestellt. Er liegt zerquetscht unter dem Metal Gear.</p></div>
+    <div class="page"><p>Seite 18: Snake verweigert ihm den tödlichen Schuss. Er lässt ihn sterben.</p></div>
+    <div class="page"><p>Seite 19: Miller erledigt den Rest. Die Rache ist vollzogen.</p></div>
+    <div class="page"><p>Seite 20: Doch der Frieden bleibt aus. Ein Parasiten-Ausbruch auf der Mother Base.</p></div>
+    <div class="page"><p>Seite 21: Snake muss seine eigenen Männer töten. Eine der dunkelsten Stunden.</p></div>
+    <div class="page"><p>Seite 22: Er saluttiert seinen gefallenen Soldaten. Asche auf der Haut.</p></div>
+    <div class="page"><p>Seite 23: Quiet verschwindet in der Wüste. Sie opfert sich, um Snake zu retten.</p></div>
+    <div class="page"><p>Seite 24: Der Abschied von Quiet. Eine tragische Liebesgeschichte endet.</p></div>
+    <div class="page"><p>Seite 25: Snake entdeckt die Wahrheit über sich selbst.</p></div>
+    <div class="page"><p>Seite 26: Er ist nicht der echte Big Boss. Er ist ein „Phantom“.</p></div>
+    <div class="page"><p>Seite 27: „Venom Snake“ – eine künstliche Identität für den echten Big Boss.</p></div>
+    <div class="page"><p>Seite 28: Die schockierende Enthüllung: Die gesamte Saga ist ein Täuschungsmanöver.</p></div>
+    <div class="page"><p>Seite 29: Venom Snake akzeptiert sein Schicksal als Double.</p></div>
+    <div class="page"><p>Seite 30: Er ist die Legende, die für den echten Big Boss kämpft.</p></div>
+    <div class="page"><p>Seite 31: Outer Heaven wird in den Schatten aufgebaut.</p></div>
+    <div class="page"><p>Seite 32: Er beginnt, eine Armee aufzubauen, die die Welt herausfordert.</p></div>
+    <div class="page"><p>Seite 33: Der echte Big Boss ist bereits verschwunden, um ZANZIBAR LAND zu gründen.</p></div>
+    <div class="page"><p>Seite 34: Venom Snake blickt in den Spiegel. Sein Gesicht verschwimmt.</p></div>
+    <div class="page"><p>Seite 35: Er zerschlägt den Spiegel. Er ist nicht mehr er selbst.</p></div>
+    <div class="page"><p>Seite 36: Die Söldner-Karriere erreicht ihren Höhepunkt.</p></div>
+    <div class="page"><p>Seite 37: Diamond Dogs werden zu einer globalen Macht.</p></div>
+    <div class="page"><p>Seite 38: Der Zyklus aus Rache und Schmerz ist nun vollendet.</p></div>
+    <div class="page"><p>Seite 39: Snake erkennt die Leere in seinem Phantom-Schmerz.</p></div>
+    <div class="page"><p>Seite 40: Er wird zu dem „Big Boss“, den Solid Snake einst töten wird.</p></div>
+    <div class="page"><p>Seite 41: Der Kreis schließt sich mit dem ersten Metal Gear-Spiel.</p></div>
+    <div class="page"><p>Seite 42: Er akzeptiert die Rolle des Antagonisten.</p></div>
+    <div class="page"><p>Seite 43: Die Welt wird ihn als Schurken in die Geschichtsbücher schreiben.</p></div>
+    <div class="page"><p>Seite 44: Er ist der Schatten des echten Big Boss.</p></div>
+    <div class="page"><p>Seite 45: Einsamkeit in der Mother Base.</p></div>
+    <div class="page"><p>Seite 46: Die Erinnerungen an die MSF verblassen.</p></div>
+    <div class="page"><p>Seite 47: Venom Snake bereitet sich auf sein Ende vor.</p></div>
+    <div class="page"><p>Seite 48: Er wartet auf den Tag, an dem sein Sohn ihn findet.</p></div>
+    <div class="page"><p>Seite 49: „V has come to.“</p></div>
+    <div class="page"><p>Seite 50: Alles ist bereit für Solid Snake.</p></div>
+    <div class="page"><p>Seite 51: Die Legende von Outer Heaven wird zu einer Prophezeiung.</p></div>
+    <div class="page"><p>Seite 52: Venom Snake wächst in seiner Rolle als Big Boss.</p></div>
+    <div class="page"><p>Seite 53: Soldaten aus aller Welt schließen sich an.</p></div>
+    <div class="page"><p>Seite 54: Er ist die ultimative Abschreckung.</p></div>
+    <div class="page"><p>Seite 55: Aber im Inneren: Stille.</p></div>
+    <div class="page"><p>Seite 56: Nur der Phantom-Schmerz bleibt.</p></div>
+    <div class="page"><p>Seite 57: Die Mission ist eine einzige Lüge.</p></div>
+    <div class="page"><p>Seite 58: Er kämpft für eine Identität, die ihm nicht gehört.</p></div>
+    <div class="page"><p>Seite 59: Ein Phantom ist nicht real.</p></div>
+    <div class="page"><p>Seite 60: Doch sein Hass ist echt.</p></div>
+    <div class="page"><p>Seite 61: Der Kampf beginnt wieder.</p></div>
+    <div class="page"><p>Seite 62: Von Afghanistan zurück zum Ursprung.</p></div>
+    <div class="page"><p>Seite 63: Die Saga findet ihr tragisches Ende.</p></div>
+    <div class="page"><p>Seite 64: Venom Snake verschwindet im Krieg.</p></div>
+    <div class="page"><p>Seite 65: Eine Legende, die nie existierte. Fin.</p></div>
+    <div class="pageNav">
+        <button onclick="prev('tpp')">Zurück</button>
+        <button onclick="next('tpp')">Weiter</button>
+        <span class="pageCounter" id="counter-tpp">Seite 1 von 65</span>
+    </div>
 </div>
 
 <script>
-// ====================== JS ======================
-let currentOpen = null;
+    const audioOpen = new Audio('open.mp3');
+    const audioClose = new Audio('close.mp3');
+    const bgTheme = new Audio('backgroundtheme.mp3');
+    bgTheme.loop = true;
 
-window.addEventListener('load', () => {
-    const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 0.5;
-    bgMusic.play().catch(() => {});
-});
-
-function toggleGame(id) {
-    const sec = document.getElementById(id);
-    const open = document.getElementById('openSound');
-    const close = document.getElementById('closeSound');
-    if (currentOpen && currentOpen !== sec) {
-        currentOpen.style.display = "none";
-        close.currentTime = 0; close.play();
+    function initAudio() {
+        bgTheme.play();
+        document.getElementById('startBtn').style.display = 'none';
     }
-    if (sec.style.display === "block") {
-        sec.style.display = "none";
-        close.currentTime = 0; close.play();
-        currentOpen = null;
-    } else {
-        sec.style.display = "block";
-        open.currentTime = 0; open.play();
-        currentOpen = sec;
-        updatePageCounter(id);
+
+    function showSection(id) {
+        audioOpen.play();
+        document.querySelectorAll('.gameSection').forEach(s => s.style.display = 'none');
+        document.getElementById('welcome').style.display = 'none';
+        const target = document.getElementById(id);
+        if(target) target.style.display = 'block';
     }
-}
 
-function updatePageCounter(id) {
-    const sec = document.getElementById(id);
-    const pages = sec.querySelectorAll('.page');
-    const active = [...pages].findIndex(p => p.classList.contains('active')) + 1;
-    const counter = document.getElementById('counter-' + id);
-    if (counter) counter.textContent = `Seite ${active} von ${pages.length}`;
-}
-
-function nextPage(id) {
-    const sec = document.getElementById(id);
-    const pages = sec.querySelectorAll('.page');
-    let i = [...pages].findIndex(p => p.classList.contains('active'));
-    pages[i].classList.remove('active');
-    pages[(i + 1) % pages.length].classList.add('active');
-    updatePageCounter(id);
-}
-
-function prevPage(id) {
-    const sec = document.getElementById(id);
-    const pages = sec.querySelectorAll('.page');
-    let i = [...pages].findIndex(p => p.classList.contains('active'));
-    pages[i].classList.remove('active');
-    pages[(i - 1 + pages.length) % pages.length].classList.add('active');
-    updatePageCounter(id);
-}
-
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-        document.exitFullscreen();
+    function next(id) {
+        audioOpen.currentTime = 0;
+        audioOpen.play();
+        const sec = document.getElementById(id);
+        const pages = sec.querySelectorAll('.page');
+        let i = [...pages].findIndex(p => p.classList.contains('active'));
+        pages[i].classList.remove('active');
+        pages[(i + 1) % pages.length].classList.add('active');
     }
-}
+
+    function prev(id) {
+        audioClose.currentTime = 0;
+        audioClose.play();
+        const sec = document.getElementById(id);
+        const pages = sec.querySelectorAll('.page');
+        let i = [...pages].findIndex(p => p.classList.contains('active'));
+        pages[i].classList.remove('active');
+        pages[(i - 1 + pages.length) % pages.length].classList.add('active');
+    }
 </script>
 </body>
 </html>
