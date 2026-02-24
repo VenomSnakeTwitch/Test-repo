@@ -19,30 +19,28 @@ html, body {
 #backgroundOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 0; }
 
 /* Menü */
-#mainMenu { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; z-index: 1001; box-sizing: border-box; }
+#mainMenu { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.9); display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; z-index: 1001; border-bottom: 2px solid gold; box-sizing: border-box; }
 #menuButtons { display: flex; gap: 10px; }
-#menuButtons button, #fullscreenBtn { font-size: 14px; padding: 8px 16px; background: black; border: 2px solid gold; color: gold; cursor: pointer; border-radius: 5px; transition: all 0.2s ease; }
-#menuButtons button:hover, #fullscreenBtn:hover { background: gold; color: black; }
+button { font-size: 14px; padding: 8px 16px; background: black; border: 2px solid gold; color: gold; cursor: pointer; border-radius: 5px; transition: 0.2s; }
+button:hover { background: gold; color: black; }
 
-/* Archiv Modal */
-#archiveModal { display: none; position: fixed; top: 80px; left: 10%; width: 80%; height: 75%; background: rgba(0,0,0,0.98); border: 2px solid gold; z-index: 2000; padding: 20px; box-sizing: border-box; overflow-y: auto; text-align: center; }
-.nav-list { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
-#loader { display: none; margin: 20px 0; color: gold; font-size: 18px; }
-#loreDisplay { border-top: 1px solid gold; padding-top: 20px; min-height: 150px; text-align: left; }
+/* Archiv Terminal */
+#archiveModal { display: none; position: fixed; top: 80px; left: 10%; width: 80%; height: 75%; background: rgba(0,0,0,0.98); border: 2px solid gold; z-index: 2000; padding: 20px; box-sizing: border-box; text-align: center; }
+.nav-list { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; justify-content: center; }
+#loader { display: none; margin: 40px 0; font-size: 20px; }
+#loreDisplay { 
+    border: 1px solid gold; padding: 20px; height: 350px; overflow-y: auto; text-align: left; 
+    line-height: 1.6; background: rgba(20, 20, 0, 0.2);
+}
+#loreDisplay::-webkit-scrollbar { width: 8px; }
+#loreDisplay::-webkit-scrollbar-thumb { background: gold; }
 
-/* Haupt Content */
-#overlay { margin-top: 70px; padding: 20px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 1; }
-h1 { font-size: 36px; text-shadow: 0 0 15px gold, 0 0 30px black; margin-bottom: 20px; }
-#countdown { display: flex; gap: 25px; margin-bottom: 30px; }
-.time-box { background: black; padding: 15px 25px; border-radius: 8px; box-shadow: 0 0 20px rgba(255,215,0,0.6); min-width: 80px; }
-.number { font-size: 48px; letter-spacing: 3px; transition: opacity 0.2s ease; }
-.blink { opacity: 0.4; }
-
-/* Musiksteuerung */
-.music-controls { z-index: 2; }
-.music-controls button { background: black; border: 2px solid gold; color: gold; padding: 10px 20px; margin: 5px; cursor: pointer; border-radius: 5px; }
-.volume-slider { width: 150px; cursor: pointer; margin-top: 10px; }
-#footer { position: fixed; bottom: 10px; left: 10px; color: gold; font-size: 14px; z-index: 1002; }
+/* Content */
+#overlay { margin-top: 100px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 1; }
+h1 { font-size: 32px; text-shadow: 0 0 10px gold; margin-bottom: 20px; }
+#countdown { display: flex; gap: 20px; margin-bottom: 30px; }
+.time-box { background: black; padding: 15px; border: 1px solid gold; min-width: 70px; }
+.number { font-size: 36px; }
 </style>
 </head>
 
@@ -53,54 +51,43 @@ h1 { font-size: 36px; text-shadow: 0 0 15px gold, 0 0 30px black; margin-bottom:
     <div id="menuButtons">
         <button onclick="toggleArchive()">▶ Codec-Archiv</button>
         <button onclick="window.location.href='mgs4quiz.html'">▶ MGS4 Quiz</button>
-        <button onclick="window.location.href='trailer.html'">▶ Trailer</button>
     </div>
-    <button id="fullscreenBtn" onclick="toggleFullscreen()">⛶ Vollbild</button>
+    <button onclick="toggleFullscreen()">⛶ Vollbild</button>
 </div>
 
 <div id="archiveModal">
-    <h2>--- CODEC ARCHIV ---</h2>
+    <h2 style="letter-spacing: 3px;">--- DATABASE ACCESS ---</h2>
     <div class="nav-list" id="gameNav"></div>
-    <div id="loader">Verbindungsaufbau...</div>
-    <div id="loreDisplay"><p>Wähle einen Teil aus der Datenbank aus.</p></div>
-    <button style="margin-top:20px;" onclick="toggleArchive()">System schließen</button>
+    <div id="loader">Verbinde zum Codec...</div>
+    <div id="loreDisplay"><p>Wähle eine Operation aus, um die Akten zu laden.</p></div>
+    <button style="margin-top:20px;" onclick="toggleArchive()">[ VERBINDUNG TRENNEN ]</button>
 </div>
 
 <div id="overlay">
-    <h1>METAL GEAR SOLID Master Collection Vol. 2</h1>
+    <h1>METAL GEAR SOLID Master Collection</h1>
     <div id="countdown">
-        <div class="time-box"><div class="number" id="days">00</div><div class="label">Tage</div></div>
-        <div class="time-box"><div class="number" id="hours">00</div><div class="label">Stunden</div></div>
-        <div class="time-box"><div class="number" id="minutes">00</div><div class="label">Minuten</div></div>
-        <div class="time-box"><div class="number" id="seconds">00</div><div class="label">Sekunden</div></div>
-    </div>
-
-    <div class="music-controls">
-        <button onclick="playAudio()">▶ Play Music</button>
-        <button onclick="pauseAudio()">⏸ Pause Music</button>
-        <br>
-        <input type="range" min="0" max="1" step="0.01" value="0.3" oninput="setVolume(this.value)" class="volume-slider">
+        <div class="time-box"><div class="number" id="days">00</div>Tage</div>
+        <div class="time-box"><div class="number" id="hours">00</div>Std</div>
+        <div class="time-box"><div class="number" id="minutes">00</div>Min</div>
+        <div class="time-box"><div class="number" id="seconds">00</div>Sek</div>
     </div>
     <audio id="bgMusic" loop><source src="music.mp3" type="audio/mpeg"></audio>
 </div>
 
-<div id="footer">© 2026 VenomSnake_Twitch. Alle Rechte vorbehalten.</div>
-
 <script>
 const gameData = {
-    "MG": { title: "Metal Gear", info: "Der Ursprung (1987). Snake infiltriert Outer Heaven. Anekdote: Das Stealth-Genre entstand, weil die MSX-Hardware keine vielen Gegner gleichzeitig darstellen konnte." },
-    "MG2": { title: "MG2: Solid Snake", info: "Der direkte Vorgänger von MGS1 (1990). Snake infiltriert Zanzibar Land. Anekdote: Hier wurde die KI der Wachen massiv verbessert und Snake lernte, in der Umgebung zu kriechen." },
-    "MGS1": { title: "MGS1", info: "Die 3D-Revolution auf Shadow Moses. Anekdote: Psycho Mantis konnte damals deine Memory Card 'lesen', was viele Spieler absolut verblüffte." },
-    "MGS2": { title: "MGS2", info: "Raiden als Protagonist, ein Spiel über Memes und Information. Anekdote: Kojima hielt den Wechsel von Snake zu Raiden bis zum Release komplett geheim." },
-    "MGS3": { title: "MGS3", info: "Die Geburtsstunde von Big Boss im Dschungel. Anekdote: Das Finale mit The Boss ist bis heute einer der emotionalsten Momente der Serie." },
-    "MGS4": { title: "MGS4", info: "Old Snake kehrt für das große Finale zurück. Anekdote: Die langen Installationspausen zwischen den Akten sind ein Teil der MGS4-Geschichte." },
-    "MGS5": { title: "MGS V", info: "Open-World Stealth in Perfektion. Anekdote: Es ist das letzte Spiel der Reihe unter Kojimas Leitung bei Konami." }
+    "MG": { title: "Metal Gear", info: "Solid Snake infiltriert Outer Heaven, um den Metal Gear TX-55 zu zerstören. Er entdeckt, dass sein Mentor Big Boss der Anführer des Aufstands ist." },
+    "MG2": { title: "MG2: Solid Snake", info: "Snake reist nach Zanzibar Land. Er muss Dr. Marv retten und den neuen Metal Gear D vernichten. Ein dramatisches Duell gegen Big Boss offenbart die Wahrheit über Snakes Herkunft." },
+    "MGS1": { title: "MGS1", info: "Auf Shadow Moses muss Snake eine Terrorgruppe unter Führung seines Zwillings Liquid Snake stoppen. Es ist ein Kampf gegen Gene, Verrat und den Metal Gear REX." },
+    "MGS2": { title: "MGS2", info: "Raiden infiltriert die Big Shell. Was als einfache Rettungsmission beginnt, wird zur Enthüllung über die Kontrolle der 'Patrioten' und die Manipulation der Gesellschaft durch Informationen." },
+    "MGS3": { title: "MGS3", info: "1964: Naked Snake gegen The Boss. Ein Verrat der Regierung führt ihn tief in den Dschungel. Die Tragödie um den Shagohod markiert den Beginn der Big Boss Legende." },
+    "MGS4": { title: "MGS4", info: "Old Snake kämpft gegen Liquid Ocelot in einer Welt voller PMCs. Er versucht, das System der Patrioten ein für alle Mal abzuschalten." },
+    "MGS5": { title: "MGS V", info: "Venom Snake baut Diamond Dogs auf. Eine Geschichte über Rache, den Verlust der Identität und den Weg in die Finsternis." }
 };
 
 const openSound = new Audio('open.mp3');
 const closeSound = new Audio('close.mp3');
 
-// Archiv füllen
 const nav = document.getElementById('gameNav');
 Object.keys(gameData).forEach(key => {
     const btn = document.createElement('button');
@@ -118,34 +105,19 @@ Object.keys(gameData).forEach(key => {
 });
 
 function toggleArchive() {
-    const modal = document.getElementById('archiveModal');
-    if (modal.style.display === 'block') {
-        modal.style.display = 'none';
-        closeSound.play().catch(()=>{});
-    } else {
-        modal.style.display = 'block';
-        openSound.play().catch(()=>{});
-    }
+    const m = document.getElementById('archiveModal');
+    m.style.display = (m.style.display === 'block') ? 'none' : 'block';
+    (m.style.display === 'block') ? openSound.play().catch(()=>{}) : closeSound.play().catch(()=>{});
 }
 
-// Countdown
-const targetDate = new Date(Date.UTC(2026, 7, 27, 14, 0, 0)).getTime();
 function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-    if (distance < 0) return;
-    document.getElementById("days").textContent = String(Math.floor(distance / (1000*60*60*24))).padStart(2,'0');
-    document.getElementById("hours").textContent = String(Math.floor((distance % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
-    document.getElementById("minutes").textContent = String(Math.floor((distance % (1000*60*60)) / (1000*60))).padStart(2,'0');
-    document.getElementById("seconds").textContent = String(Math.floor((distance % (1000*60)) / 1000)).padStart(2,'0');
+    const diff = new Date("August 27, 2026 14:00:00") - new Date();
+    document.getElementById("days").innerText = String(Math.floor(diff / (1000*60*60*24))).padStart(2,'0');
+    document.getElementById("hours").innerText = String(Math.floor((diff % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
+    document.getElementById("minutes").innerText = String(Math.floor((diff % (1000*60*60)) / (1000*60))).padStart(2,'0');
+    document.getElementById("seconds").innerText = String(Math.floor((diff % (1000*60)) / 1000)).padStart(2,'0');
 }
 setInterval(updateCountdown, 1000);
-updateCountdown();
-
-const audio = document.getElementById("bgMusic");
-function playAudio(){ audio.play(); }
-function pauseAudio(){ audio.pause(); }
-function setVolume(v){ audio.volume = v; }
 function toggleFullscreen(){ !document.fullscreenElement ? document.documentElement.requestFullscreen() : document.exitFullscreen(); }
 </script>
 </body>
